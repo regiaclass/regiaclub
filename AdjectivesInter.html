@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Adjectives Inter</title>
+<style>
+:root{--navy:#102a43;--blue:#1769aa;--light:#eef6fb;--gold:#f3b33d;--green:#238636;--red:#c83c3c;--ink:#1f2933;--muted:#627d98}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(135deg,#edf5fa,#fff8e8);color:var(--ink);min-height:100vh}
+.app{max-width:760px;margin:auto;padding:18px 14px 30px}.header{background:var(--navy);color:white;border-radius:22px;padding:20px 18px;box-shadow:0 8px 24px #102a4325}.brand{font-size:30px;font-weight:800}.subtitle{margin-top:5px;color:#dbeafe}.topbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.control{border:0;border-radius:12px;padding:10px 13px;font-weight:700;cursor:pointer;background:white;color:var(--navy)}.control.active{background:var(--gold)}.progress{margin-top:16px;height:9px;background:#ffffff35;border-radius:20px;overflow:hidden}.bar{height:100%;width:0;background:var(--gold);transition:.3s}
+.card{background:white;border-radius:22px;margin-top:16px;padding:22px;box-shadow:0 8px 28px #102a4318}.count{font-size:14px;color:var(--muted);font-weight:700}.instruction{font-size:16px;color:var(--muted);margin:7px 0 15px}.question{font-size:23px;line-height:1.3;font-weight:800;margin:10px 0 16px}.audio{border:0;border-radius:12px;background:var(--light);color:var(--blue);padding:9px 12px;font-weight:800;cursor:pointer;margin-bottom:15px}.answers{display:grid;gap:11px}.answer{display:flex;align-items:center;gap:8px;border:2px solid #d9e2ec;background:#fff;border-radius:15px;padding:12px;cursor:pointer;transition:.2s}.answer:hover{border-color:var(--blue);background:#f7fbff}.answer.correct{border-color:var(--green);background:#edf8ef}.answer.wrong{border-color:var(--red);background:#fff0f0}.letter{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:800;flex:none}.answerText{flex:1;font-size:17px;font-weight:700}.miniAudio{border:0;background:#f1f5f9;border-radius:9px;padding:8px;cursor:pointer;font-size:17px}.feedback{min-height:28px;margin-top:15px;font-weight:800}.next{width:100%;border:0;border-radius:14px;padding:14px;background:var(--blue);color:#fff;font-size:17px;font-weight:800;cursor:pointer;margin-top:8px}.next:disabled{opacity:.45;cursor:not-allowed}.score{font-size:18px;font-weight:800;color:var(--navy)}.finish{text-align:center}.bigScore{font-size:52px;font-weight:900;color:var(--blue);margin:12px}.hidden{display:none}.note{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.4}.badge{display:inline-block;background:#fff3cd;color:#795300;border-radius:20px;padding:6px 10px;font-weight:800;font-size:12px;margin-top:10px}
+@media(max-width:500px){.app{padding:10px}.header{border-radius:18px;padding:16px}.brand{font-size:26px}.card{padding:17px;border-radius:18px}.question{font-size:20px}.answerText{font-size:15px}}
+</style></head>
+<body>
+<div class="app">
+<header class="header">
+  <div class="brand">Adjectives Inter 🎯</div>
+  <div class="subtitle">Guess the adjective from its definition.</div>
+  <span class="badge">15 questions • Intermediate</span>
+  <div class="topbar">
+    <button class="control" id="slowBtn" onclick="toggleSlow()">🐢 Slow mode: OFF</button>
+    <button class="control" onclick="pauseSpeech()">⏸ Pause audio</button>
+    <button class="control" onclick="resumeSpeech()">▶ Resume audio</button>
+    <button class="control" onclick="restart()">↻ Restart</button>
+  </div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+</header>
+
+<main id="game"></main>
+<div class="note">🔊 Audio uses your phone's built-in English voice. Tap the speaker next to the question or an answer. Slow mode changes the speaking speed.</div>
+</div>
+<script>
+const questions=[
+ {d:"You can depend on this person. They do what they promise and can be trusted.",a:["reliable","reserved","moody"],c:"reliable"},
+ {d:"This person does not like working or making an effort. They prefer to do as little as possible.",a:["ambitious","lazy","cheerful"],c:"lazy"},
+ {d:"This person’s mood changes often and suddenly. They can be happy one moment and unhappy the next.",a:["moody","sociable","generous"],c:"moody"},
+ {d:"This person likes giving things, sharing, and helping other people.",a:["sensitive","generous","impatient"],c:"generous"},
+ {d:"This person is usually happy, positive, and in a good mood.",a:["cheerful","untidy","reserved"],c:"cheerful"},
+ {d:"This person is relaxed and does not worry too much about problems or plans.",a:["hard-working","easy-going","talkative"],c:"easy-going"},
+ {d:"This person talks a lot and enjoys having conversations with other people.",a:["talkative","shy","reliable"],c:"talkative"},
+ {d:"This person puts a lot of effort into their work and does not mind working hard.",a:["hard-working","lazy","reserved"],c:"hard-working"},
+ {d:"This person is not neat or organized. Their room or things are often messy.",a:["untidy","optimistic","sociable"],c:"untidy"},
+ {d:"This person expects good things to happen and usually has a positive view of the future.",a:["optimistic","impatient","moody"],c:"optimistic"},
+ {d:"This person feels nervous or uncomfortable with new people and may not talk much at first.",a:["shy","generous","ambitious"],c:"shy"},
+ {d:"This person keeps their feelings and ideas to themselves and does not easily share personal information.",a:["reserved","cheerful","talkative"],c:"reserved"},
+ {d:"This person does not like waiting and wants things to happen immediately.",a:["impatient","easy-going","sensitive"],c:"impatient"},
+ {d:"This person enjoys being with other people, meeting people, and spending time in groups.",a:["sociable","untidy","lazy"],c:"sociable"},
+ {d:"This person has strong goals for their future and wants to be successful.",a:["ambitious","sensitive","easy-going"],c:"ambitious"}
+];
+let index=0,score=0,answered=false,slow=false;
+function speak(text){speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=slow?.62:.95;u.pitch=1;speechSynthesis.speak(u)}
+function pauseSpeech(){speechSynthesis.pause()} function resumeSpeech(){speechSynthesis.resume()}
+function toggleSlow(){slow=!slow;document.getElementById('slowBtn').textContent='🐢 Slow mode: '+(slow?'ON':'OFF')}
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
+function render(){
+ if(index>=questions.length){finish();return}
+ answered=false;const q=questions[index];
+ document.getElementById('bar').style.width=((index)/questions.length*100)+'%';
+ const letters=['A','B','C'];
+ const choices=shuffle(q.a);
+ document.getElementById('game').innerHTML=`<section class="card">
+  <div class="count">QUESTION ${index+1} OF ${questions.length} <span class="score">• Score: ${score}</span></div>
+  <div class="instruction">Listen, read the definition, and choose the correct adjective.</div>
+  <div class="question">Which adjective is being described?</div>
+  <button class="audio" onclick="speak('Which adjective is being described? ${q.d}')">🔊 Hear question</button>
+  <div class="card" style="margin:0 0 15px;padding:16px;background:#f7fafc;box-shadow:none;border:1px solid #e5e7eb"><strong>Definition:</strong><br>${q.d}</div>
+  <div class="answers">${choices.map((x,i)=>`<div class="answer" id="ans-${x}" onclick="choose('${x.replace(/'/g,"\\'")}','${q.c.replace(/'/g,"\\'")}')"><span class="letter">${letters[i]}</span><span class="answerText">${x}</span><button class="miniAudio" onclick="event.stopPropagation(); speak('${x}');">🔊</button></div>`).join('')}</div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next" id="next" disabled onclick="nextQ()">Next question →</button>
+ </section>`;
+}
+function choose(selected,correct){if(answered)return;answered=true;const f=document.getElementById('feedback');const el=document.getElementById('ans-'+selected);if(selected===correct){score++;el.classList.add('correct');f.textContent='✅ Correct!';f.style.color='var(--green)';speak('Correct. The answer is '+correct+'.')}else{el.classList.add('wrong');document.getElementById('ans-'+correct).classList.add('correct');f.textContent='❌ Not quite. The answer is '+correct+'.';f.style.color='var(--red)';speak('Not quite. The answer is '+correct+'.')}document.getElementById('next').disabled=false;document.getElementById('bar').style.width=((index+1)/questions.length*100)+'%'}
+function nextQ(){index++;render()}
+function restart(){speechSynthesis.cancel();index=0;score=0;render()}
+function finish(){document.getElementById('bar').style.width='100%';document.getElementById('game').innerHTML=`<section class="card finish"><div class="count">GAME COMPLETE</div><h1>Great job! 🎉</h1><div class="bigScore">${score}/${questions.length}</div><p>You finished <strong>Adjectives Inter</strong>.</p><button class="audio" onclick="speak('Great job! You scored ${score} out of ${questions.length}.')">🔊 Hear your score</button><button class="next" onclick="restart()">↻ Play again</button></section>`}
+render();
+</script>
+</body></html>

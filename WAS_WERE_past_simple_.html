@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regia Class - Past Simple of Be Practice</title>
+    <style>
+        :root {
+            --primary-blue: #0d2853;
+            --primary-red: #d32f2f;
+            --bg-light: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --correct-green: #2ecc71;
+            --wrong-red: #e74c3c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo-container img {
+            max-width: 250px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .instructions {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .instructions-pt {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background-color: var(--primary-blue);
+            transition: width 0.3s ease;
+        }
+
+        .audio-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .audio-btn {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: background 0.2s;
+        }
+
+        .audio-btn:hover {
+            background-color: #16386d;
+        }
+
+        .audio-btn.active {
+            background-color: var(--primary-red);
+        }
+
+        .question-card {
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .translation-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 12px 15px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option-btn:hover:not([disabled]) {
+            border-color: var(--primary-blue);
+            background: #edf2f7;
+        }
+
+        .option-text-en {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .option-text-pt {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .option-btn.correct {
+            background-color: #d4edda !important;
+            border-color: var(--correct-green) !important;
+        }
+
+        .option-btn.correct .option-text-en {
+            color: #155724;
+        }
+
+        .option-btn.wrong {
+            background-color: #f8d7da !important;
+            border-color: var(--wrong-red) !important;
+        }
+
+        .option-btn.wrong .option-text-en {
+            color: #721c24;
+        }
+
+        .next-btn, .retry-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-red);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .next-btn:hover, .retry-btn:hover {
+            background-color: #b02323;
+        }
+
+        .results-container {
+            text-align: center;
+            display: none;
+        }
+
+        .results-title {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .score-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .score-num {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .score-num.hits { color: var(--correct-green); }
+        .score-num.misses { color: var(--wrong-red); }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo-container">
+            <!-- Logomarca Regia Class em SVG idêntica à foto -->
+            <svg viewBox="0 0 500 200" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(10, 20)">
+                    <!-- Escudo -->
+                    <path d="M 10,10 L 110,10 L 110,90 Q 110,140 60,165 Q 10,140 10,90 Z" fill="#0c2340" stroke="#0c2340" stroke-width="3"/>
+                    <!-- Topo Vermelho -->
+                    <path d="M 13,13 L 107,13 L 107,55 L 13,55 Z" fill="#d3122a"/>
+                    <!-- Coroa -->
+                    <path d="M 35,45 L 42,28 L 60,38 L 78,28 L 85,45 Z" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="42" cy="25" r="2.5" fill="#ffffff"/>
+                    <circle cx="60" cy="34" r="2.5" fill="#ffffff"/>
+                    <circle cx="78" cy="25" r="2.5" fill="#ffffff"/>
+                    <!-- Livro e R -->
+                    <line x1="60" y1="60" x2="60" y2="155" stroke="#ffffff" stroke-width="3"/>
+                    <path d="M 22,80 Q 40,70 58,80 L 58,105 Q 40,95 22,105 Z" fill="#ffffff"/>
+                    <path d="M 25,83 Q 40,75 55,83 L 55,102 Q 40,95 25,102 Z" fill="#0c2340"/>
+                    <text x="72" y="115" font-family="'Times New Roman', serif" font-weight="bold" font-size="38" fill="#ffffff">R</text>
+                </g>
+                <!-- Texto da Marca -->
+                <text x="140" y="90" font-family="'Times New Roman', Times, serif" font-weight="bold" font-size="42" fill="#0c2340" letter-spacing="1">REGIA CLASS</text>
+                <line x1="170" y1="120" x2="225" y2="120" stroke="#0c2340" stroke-width="2"/>
+                <text x="235" y="126" font-family="'Times New Roman', Times, serif" font-size="22" fill="#0c2340" font-style="italic">To be bilingual</text>
+                <line x1="385" y1="120" x2="440" y2="120" stroke="#0c2340" stroke-width="2"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Game Screen -->
+        <div id="game-screen">
+            <div class="instructions">Read and complete with the correct option:</div>
+            <div class="instructions-pt">Leia e complete com a opção correta:</div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+
+            <div class="audio-controls">
+                <button class="audio-btn" onclick="playAudio()"><span id="play-icon">🔊</span> Listen (Ouvir)</button>
+                <button class="audio-btn" onclick="pauseAudio()">⏸ Pause</button>
+                <button class="audio-btn" id="slow-btn" onclick="toggleSlow()">🐢 Slow Mode</button>
+            </div>
+
+            <div class="question-card">
+                <div class="question-text" id="question-en"></div>
+                <div class="translation-text" id="question-pt"></div>
+
+                <div class="options-grid" id="options-container"></div>
+            </div>
+
+            <button class="next-btn hidden" id="next-btn" onclick="nextQuestion()">Next Question (Próxima)</button>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="results-container">
+            <div class="results-title">Activity Completed!</div>
+            <p>Here is your result / Aqui está o seu resultado:</p>
+            
+            <div class="score-board">
+                <div class="score-box">
+                    <span>Correct (Acertos)</span>
+                    <span class="score-num hits" id="hits-count">0</span>
+                </div>
+                <div class="score-box">
+                    <span>Errors (Erros)</span>
+                    <span class="score-num misses" id="misses-count">0</span>
+                </div>
+            </div>
+
+            <button class="retry-btn" onclick="restartGame()">Try Again (Tentar Novamente)</button>
+        </div>
+    </div>
+
+    <script>
+        // Exercícios baseados na imagem fornecida (Vocabulário e Gramática)
+        const questions = [
+            {
+                q_en: "1. A: ____ Miguel in class yesterday? <br> B: No, he wasn't. He was sick.",
+                q_pt: "1. A: O Miguel estava na aula ontem? <br> B: Não, ele não estava. Ele estava doente.",
+                options: [
+                    { en: "Was", pt: "Estava/Era (singular)" },
+                    { en: "Were", pt: "Estavam/Eram (plural/you)" },
+                    { en: "Wasn't", pt: "Não estava/Não era" }
+                ],
+                answer: 0
+            },
+            {
+                q_en: "2. Where ____ your sister yesterday?",
+                q_pt: "2. Onde estava sua irmã ontem?",
+                options: [
+                    { en: "were", pt: "estavam/eram" },
+                    { en: "was", pt: "estava/era" },
+                    { en: "weren't", pt: "não estavam" }
+                ],
+                answer: 1
+            },
+            {
+                q_en: "3. A: Why ____ you at school yesterday? <br> B: Because we were sick.",
+                q_pt: "3. A: Por que vocês não estavam na escola ontem? <br> B: Porque nós estávamos doentes.",
+                options: [
+                    { en: "wasn't", pt: "não estava" },
+                    { en: "were", pt: "estavam" },
+                    { en: "weren't", pt: "não estavam" }
+                ],
+                answer: 2
+            },
+            {
+                q_en: "4. They ____ on vacation last week.",
+                q_pt: "4. Eles estavam de férias na semana passada.",
+                options: [
+                    { en: "was", pt: "estava" },
+                    { en: "were", pt: "estavam" },
+                    { en: "wasn't", pt: "não estava" }
+                ],
+                answer: 1
+            },
+            {
+                q_en: "5. I ____ at home yesterday at 8 p.m.",
+                q_pt: "5. Eu estava em casa ontem às 20h.",
+                options: [
+                    { en: "was", pt: "estava" },
+                    { en: "were", pt: "estavam" },
+                    { en: "weren't", pt: "não estavam" }
+                ],
+                answer: 0
+            },
+            {
+                q_en: "6. He ____ in class yesterday because he was sick.",
+                q_pt: "6. Ele não estava na aula ontem porque estava doente.",
+                options: [
+                    { en: "weren't", pt: "não estavam" },
+                    { en: "wasn't", pt: "não estava" },
+                    { en: "were", pt: "estavam" }
+                ],
+                answer: 1
+            },
+            {
+                q_en: "7. ____ you at a baseball game last Saturday?",
+                q_pt: "7. Você estava em um jogo de beisebol no último sábado?",
+                options: [
+                    { en: "Was", pt: "Estava" },
+                    { en: "Were", pt: "Estava/Estavam" },
+                    { en: "Wasn't", pt: "Não estava" }
+                ],
+                answer: 1
+            },
+            {
+                q_en: "8. I ____ late for class today. I was on time!",
+                q_pt: "8. Eu não estava atrasado para a aula hoje. Eu estava no horário!",
+                options: [
+                    { en: "wasn't", pt: "não estava" },
+                    { en: "weren't", pt: "não estavam" },
+                    { en: "were", pt: "estavam" }
+                ],
+                answer: 0
+            },
+            {
+                q_en: "9. They ____ at a concert yesterday.",
+                q_pt: "9. Eles não estavam em um show ontem.",
+                options: [
+                    { en: "wasn't", pt: "não estava" },
+                    { en: "weren't", pt: "não estavam" },
+                    { en: "was", pt: "estava" }
+                ],
+                answer: 1
+            },
+            {
+                q_en: "10. ____ she on vacation last winter?",
+                q_pt: "10. Ela estava de férias no inverno passado?",
+                options: [
+                    { en: "Were", pt: "Estavam" },
+                    { en: "Was", pt: "Estava" },
+                    { en: "Weren't", pt: "Não estavam" }
+                ],
+                answer: 1
+            },
+            {
+                q_en: "11. We ____ at this school last year.",
+                q_pt: "11. Nós estávamos nesta escola no ano passado.",
+                options: [
+                    { en: "was", pt: "estava" },
+                    { en: "wasn't", pt: "não estava" },
+                    { en: "were", pt: "estávamos" }
+                ],
+                answer: 2
+            },
+            {
+                q_en: "12. A: Where ____ you yesterday? <br> B: I was at home.",
+                q_pt: "12. A: Onde você estava ontem? <br> B: Eu estava em casa.",
+                options: [
+                    { en: "were", pt: "estava/estavam" },
+                    { en: "was", pt: "estava" },
+                    { en: "wasn't", pt: "não estava" }
+                ],
+                answer: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let hits = 0;
+        let misses = 0;
+        let isSlow = false;
+        let synth = window.speechSynthesis;
+        let currentUtterance = null;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('question-en').innerHTML = q.q_en;
+            document.getElementById('question-pt').innerHTML = q.q_pt;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.onclick = () => checkAnswer(index);
+                btn.innerHTML = `
+                    <span class="option-text-en">${opt.en}</span>
+                    <span class="option-text-pt">${opt.pt}</span>
+                `;
+                optionsContainer.appendChild(btn);
+            });
+
+            document.getElementById('next-btn').classList.add('hidden');
+            updateProgress();
+            
+            // Cancela áudio anterior se houver
+            synth.cancel();
+        }
+
+        function checkAnswer(selectedIndex) {
+            const q = questions[currentQuestion];
+            const buttons = document.querySelectorAll('.option-btn');
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (selectedIndex === q.answer) {
+                buttons[selectedIndex].classList.add('correct');
+                hits++;
+            } else {
+                buttons[selectedIndex].classList.add('wrong');
+                buttons[q.answer].classList.add('correct');
+                misses++;
+            }
+
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function updateProgress() {
+            const percentage = ((currentQuestion) / questions.length) * 100;
+            document.getElementById('progress').style.width = percentage + '%';
+        }
+
+        function showResults() {
+            document.getElementById('game-screen').classList.add('hidden');
+            document.getElementById('results-screen').style.display = 'block';
+            document.getElementById('hits-count').innerText = hits;
+            document.getElementById('misses-count').innerText = misses;
+            synth.cancel();
+        }
+
+        function restartGame() {
+            currentQuestion = 0;
+            hits = 0;
+            misses = 0;
+            document.getElementById('results-screen').style.display = 'none';
+            document.getElementById('game-screen').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        // Recursos de Áudio (SpeechSynthesis API)
+        function playAudio() {
+            synth.cancel(); // Parar áudio atual
+            
+            const q = questions[currentQuestion];
+            // Remove tags HTML para leitura
+            let textToRead = q.q_en.replace(/<br>/g, ' ').replace(/____/g, 'blank');
+            
+            // Adiciona as opções para serem lidas também
+            textToRead += ". Options: " + q.options.map(o => o.en).join(', ');
+
+            currentUtterance = new SpeechSynthesisUtterance(textToRead);
+            currentUtterance.lang = 'en-US';
+            currentUtterance.rate = isSlow ? 0.6 : 0.9;
+
+            synth.speak(currentUtterance);
+        }
+
+        function pauseAudio() {
+            if (synth.speaking) {
+                if (synth.paused) {
+                    synth.resume();
+                } else {
+                    synth.pause();
+                }
+            }
+        }
+
+        function toggleSlow() {
+            isSlow = !isSlow;
+            const btn = document.getElementById('slow-btn');
+            if (isSlow) {
+                btn.classList.add('active');
+                btn.innerText = '🐢 Slow Mode (ON)';
+            } else {
+                btn.classList.remove('active');
+                btn.innerText = '🐢 Slow Mode';
+            }
+        }
+
+        // Iniciar jogo ao carregar
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>

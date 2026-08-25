@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regia Class - Reading & True or False Exercise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #2c3e50;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        /* Logo Header */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #eaeeed;
+            padding-bottom: 15px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .shield {
+            width: 60px;
+            height: 75px;
+            background: linear-gradient(180deg, #d32f2f 35%, #0d233a 35%);
+            border-radius: 4px 4px 30px 30px;
+            border: 2px solid #0d233a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            padding: 4px;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .crown {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .book-r {
+            font-size: 18px;
+            font-weight: bold;
+            color: #ffffff;
+            border-top: 1px solid rgba(255,255,255,0.4);
+            width: 80%;
+            text-align: center;
+            padding-top: 2px;
+        }
+
+        .brand-text {
+            text-align: left;
+        }
+
+        .brand-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0d233a;
+            letter-spacing: 2px;
+            margin: 0;
+            line-height: 1;
+        }
+
+        .brand-tagline {
+            font-size: 14px;
+            color: #0d233a;
+            margin-top: 5px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .brand-tagline::before, .brand-tagline::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #0d233a;
+        }
+
+        /* Reading Section */
+        .reading-section {
+            background: #fdfbf7;
+            border: 1px solid #e0dace;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        .reading-title {
+            font-size: 26px;
+            color: #0d233a;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        .reading-subtitle {
+            font-size: 16px;
+            font-weight: 600;
+            color: #d32f2f;
+            margin-bottom: 15px;
+        }
+
+        .text-content {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        /* Interactive Words */
+        .word {
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            position: relative;
+            display: inline-block;
+        }
+
+        .verb {
+            background-color: #e3f2fd;
+            border-bottom: 2px solid #2196f3;
+        }
+
+        .adj {
+            background-color: #e8f5e9;
+            border-bottom: 2px solid #4caf50;
+        }
+
+        .noun {
+            background-color: #fff3e0;
+            border-bottom: 2px solid #ff9800;
+        }
+
+        .word:hover {
+            filter: brightness(0.92);
+            transform: translateY(-1px);
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        /* Controls / Audio Player */
+        .audio-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+            align-items: center;
+        }
+
+        .btn {
+            background-color: #0d233a;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1a3a5c;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .btn-active {
+            background-color: #d32f2f !important;
+        }
+
+        /* Exercises */
+        .exercise-section {
+            margin-top: 30px;
+        }
+
+        .exercise-title {
+            font-size: 20px;
+            color: #0d233a;
+            border-bottom: 2px solid #0d233a;
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+        }
+
+        .question-card {
+            background: #f9f9f9;
+            border: 1px solid #e9e9e9;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .question-text {
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .options {
+            display: flex;
+            gap: 20px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .feedback {
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .feedback.correct {
+            color: #2e7d32;
+        }
+
+        .feedback.incorrect {
+            color: #c62828;
+        }
+
+        /* Pop-up Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 350px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .modal-word {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0d233a;
+            margin-bottom: 5px;
+        }
+
+        .modal-type {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 12px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .type-verb { background-color: #2196f3; }
+        .type-adj { background-color: #4caf50; }
+        .type-noun { background-color: #ff9800; }
+
+        .modal-translation {
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .score-board {
+            display: none;
+            background: #e8f5e9;
+            border: 2px solid #4caf50;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-top: 20px;
+        }
+
+        .check-btn-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .btn-submit {
+            background-color: #2e7d32;
+            color: white;
+            font-size: 16px;
+            padding: 12px 30px;
+            border-radius: 25px;
+            box-shadow: 0 4px 10px rgba(46,125,50,0.3);
+        }
+
+        .btn-submit:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header with Regia Class Logo -->
+    <div class="header">
+        <div class="logo-container">
+            <div class="shield">
+                <div class="crown">👑</div>
+                <div class="book-r">📖<br>R</div>
+            </div>
+            <div class="brand-text">
+                <h1 class="brand-title">REGIA CLASS</h1>
+                <div class="brand-tagline">To be bilingual</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reading Section -->
+    <div class="reading-section">
+        <h2 class="reading-title">Our street</h2>
+        <div class="reading-subtitle">One family, 66 people, and 15 houses – all on the same street!</div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="dot" style="background:#2196f3"></div> Verb</div>
+            <div class="legend-item"><div class="dot" style="background:#4caf50"></div> Adjective</div>
+            <div class="legend-item"><div class="dot" style="background:#ff9800"></div> Noun</div>
+            <span style="margin-left:auto; color:#777;">💡 Click on highlighted words for translation & audio</span>
+        </div>
+
+        <div class="text-content" id="readingText">
+            The <span class="word noun" onclick="showPopup('Hall family', 'noun', 'Família Hall')">Hall family</span> 
+            is <span class="word adj" onclick="showPopup('big', 'adjective', 'grande')">big</span> – 
+            very <span class="word adj" onclick="showPopup('big', 'adjective', 'grande')">big</span> – 
+            and they all <span class="word verb" onclick="showPopup('live', 'verb', 'moram / vivem')">live</span> 
+            on the <span class="word adj" onclick="showPopup('same', 'adjective', 'mesma')">same</span> 
+            <span class="word noun" onclick="showPopup('street', 'noun', 'rua')">street</span>, 
+            Cotswold Gardens in Gateshead, England.
+            <br><br>
+            They <span class="word verb" onclick="showPopup('have', 'verb', 'têm')">have</span> 15 
+            <span class="word noun" onclick="showPopup('houses', 'noun', 'casas')">houses</span>. 
+            Their <span class="word noun" onclick="showPopup('ages', 'noun', 'idades')">ages</span> 
+            <span class="word verb" onclick="showPopup('go', 'verb', 'vão / variam')">go</span> from four weeks 
+            <span class="word adj" onclick="showPopup('old', 'adjective', 'de idade')">old</span> (Ellie) to 
+            <span class="word noun" onclick="showPopup('great-grandfather', 'noun', 'bisavô')">great-grandfather</span> Joe, 76.
+            <br><br>
+            Catherine and her <span class="word noun" onclick="showPopup('husband', 'noun', 'marido')">husband</span>, 
+            George, <span class="word verb" onclick="showPopup('have', 'verb', 'têm')">have</span> six 
+            <span class="word noun" onclick="showPopup('children', 'noun', 'filhos')">children</span>, and 15 
+            <span class="word noun" onclick="showPopup('grandchildren', 'noun', 'netos')">grandchildren</span>. 
+            Other <span class="word noun" onclick="showPopup('relatives', 'noun', 'parentes')">relatives</span> – 
+            <span class="word noun" onclick="showPopup('aunts', 'noun', 'tias')">aunts</span>, 
+            <span class="word noun" onclick="showPopup('uncles', 'noun', 'tios')">uncles</span>, 
+            <span class="word noun" onclick="showPopup('cousins', 'noun', 'primos(as)')">cousins</span>, 
+            <span class="word noun" onclick="showPopup('nephews', 'noun', 'sobrinhos')">nephews</span>, and 
+            <span class="word noun" onclick="showPopup('nieces', 'noun', 'sobrinhas')">nieces</span> – 
+            all <span class="word verb" onclick="showPopup('live', 'verb', 'moram')">live</span> there, 
+            <span class="word adj" onclick="showPopup('too', 'adjective', 'também')">too</span>.
+            <br><br>
+            'Our <span class="word noun" onclick="showPopup('family', 'noun', 'família')">family</span> is the most 
+            <span class="word adj" onclick="showPopup('important', 'adjective', 'importante')">important</span> 
+            <span class="word noun" onclick="showPopup('thing', 'noun', 'coisa')">thing</span>,' 
+            <span class="word verb" onclick="showPopup('says', 'verb', 'diz')">says</span> 
+            <span class="word noun" onclick="showPopup('daughter', 'noun', 'filha')">daughter</span> Marganne, 42. 
+            'We <span class="word verb" onclick="showPopup('like', 'verb', 'gostamos')">like</span> 
+            <span class="word verb" onclick="showPopup('living', 'verb', 'morar / viver')">living</span> in the 
+            <span class="word adj" onclick="showPopup('same', 'adjective', 'mesma')">same</span> 
+            <span class="word noun" onclick="showPopup('street', 'noun', 'rua')">street</span>. 
+            It's <span class="word adj" onclick="showPopup('lovely', 'adjective', 'adorável / muito bom')">lovely</span> to 
+            <span class="word verb" onclick="showPopup('have', 'verb', 'ter')">have</span> all my family 
+            <span class="word adj" onclick="showPopup('together', 'adjective', 'junta')">together</span>. 
+            At <span class="word noun" onclick="showPopup('Christmas', 'noun', 'Natal')">Christmas</span>, or on a 
+            <span class="word noun" onclick="showPopup('birthday', 'noun', 'aniversário')">birthday</span>, it's 
+            <span class="word adj" onclick="showPopup('crazy', 'adjective', 'louco / uma loucura')">crazy</span> in this 
+            <span class="word noun" onclick="showPopup('street', 'noun', 'rua')">street</span>,' she 
+            <span class="word verb" onclick="showPopup('says', 'verb', 'diz')">says</span>. 
+            '66 <span class="word noun" onclick="showPopup('people', 'noun', 'pessoas')">people</span> all 
+            <span class="word verb" onclick="showPopup('go', 'verb', 'vão')">go</span> to one 
+            <span class="word noun" onclick="showPopup('house', 'noun', 'casa')">house</span>!'
+            <br><br>
+            <span class="word noun" onclick="showPopup('Neighbour', 'noun', 'Vizinha')">Neighbour</span>, Sandra Ross, 41, 
+            <span class="word verb" onclick="showPopup('says', 'verb', 'diz')">says</span>, 'It's 
+            <span class="word adj" onclick="showPopup('great', 'adjective', 'ótimo')">great</span> 
+            <span class="word verb" onclick="showPopup('having', 'verb', 'ter')">having</span> a 
+            <span class="word adj" onclick="showPopup('big', 'adjective', 'grande')">big</span> 
+            <span class="word noun" onclick="showPopup('family', 'noun', 'família')">family</span> in the street. We're all 
+            <span class="word noun" onclick="showPopup('friends', 'noun', 'amigos')">friends</span>.' 
+            Her <span class="word noun" onclick="showPopup('husband', 'noun', 'marido')">husband</span>, Dave, 
+            <span class="word verb" onclick="showPopup('agrees', 'verb', 'concorda')">agrees</span>, 'We 
+            <span class="word verb" onclick="showPopup('love', 'verb', 'amamos')">love</span> 
+            <span class="word verb" onclick="showPopup('living', 'verb', 'morar / viver')">living</span> in 
+            <span class="word adj" onclick="showPopup('such', 'adjective', 'uma tão')">such</span> a 
+            <span class="word adj" onclick="showPopup('friendly', 'adjective', 'amigável')">friendly</span> 
+            <span class="word noun" onclick="showPopup('street', 'noun', 'rua')">street</span>.'
+        </div>
+
+        <!-- Controls -->
+        <div class="audio-controls">
+            <button class="btn" id="playBtn" onclick="playAudio()">▶ Read Aloud</button>
+            <button class="btn btn-secondary" id="pauseBtn" onclick="pauseAudio()">⏸ Pause</button>
+            <button class="btn btn-secondary" id="slowBtn" onclick="toggleSlowMode()">🐢 Slow Mode: OFF</button>
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <div class="exercise-section">
+        <h3 class="exercise-title">True or False Activity (10 Questions)</h3>
+
+        <form id="quizForm">
+            <!-- Q1 -->
+            <div class="question-card">
+                <div class="question-text">1. The Hall family lives in different cities in England.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q1" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q1" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb1"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-card">
+                <div class="question-text">2. There are 66 family members living on the same street.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q2" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q2" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb2"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-card">
+                <div class="question-text">3. The family owns 20 houses on Cotswold Gardens street.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q3" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q3" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb3"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-card">
+                <div class="question-text">4. The youngest family member is Ellie, who is four weeks old.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q4" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q4" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb4"></div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-card">
+                <div class="question-text">5. Great-grandfather Joe is 80 years old.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q5" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q5" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb5"></div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question-card">
+                <div class="question-text">6. Catherine and George have six children and 15 grandchildren.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q6" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q6" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb6"></div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question-card">
+                <div class="question-text">7. Marganne thinks living in the same street with her family is terrible.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q7" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q7" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb7"></div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question-card">
+                <div class="question-text">8. On Christmas, all 66 people go to one house to celebrate.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q8" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q8" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb8"></div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question-card">
+                <div class="question-text">9. Sandra Ross is a neighbour and she is 41 years old.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q9" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q9" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb9"></div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question-card">
+                <div class="question-text">10. Dave Ross does not like living near the Hall family.</div>
+                <div class="options">
+                    <label class="option-label"><input type="radio" name="q10" value="True"> True</label>
+                    <label class="option-label"><input type="radio" name="q10" value="False"> False</label>
+                </div>
+                <div class="feedback" id="fb10"></div>
+            </div>
+
+            <div class="check-btn-container">
+                <button type="button" class="btn btn-submit" onclick="checkAnswers()">Check Answers / Checar Respostas</button>
+            </div>
+        </form>
+
+        <div class="score-board" id="scoreBoard"></div>
+    </div>
+</div>
+
+<!-- Modal Pop-up -->
+<div class="modal" id="wordModal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <div class="modal-word" id="modalWord">Word</div>
+        <div class="modal-type" id="modalType">Verb</div>
+        <div class="modal-translation" id="modalTranslation">Tradução</div>
+        <button class="btn" onclick="speakCurrentWord()" style="margin: 0 auto;">🔊 Listen Pronunciation</button>
+    </div>
+</div>
+
+<script>
+    // Speech Synthesis setup
+    const synth = window.speechSynthesis;
+    let utterance = null;
+    let isSlow = false;
+    let currentWordText = '';
+
+    const textToRead = `The Hall family is big - very big - and they all live on the same street, Cotswold Gardens in Gateshead, England. They have 15 houses. Their ages go from four weeks old Ellie to great-grandfather Joe, 76. Catherine and her husband, George, have six children, and 15 grandchildren. Other relatives - aunts, uncles, cousins, nephews, and nieces - all live there, too. 'Our family is the most important thing,' says daughter Marganne, 42. 'We like living in the same street. It's lovely to have all my family together. At Christmas, or on a birthday, it's crazy in this street,' she says. '66 people all go to one house!' Neighbour, Sandra Ross, 41, says, 'It's great having a big family in the street. We're all friends.' Her husband, Dave, agrees, 'We love living in such a friendly street.'`;
+
+    function playAudio() {
+        if (synth.speaking && synth.paused) {
+            synth.resume();
+            return;
+        }
+        
+        if (synth.speaking) {
+            synth.cancel();
+        }
+
+        utterance = new SpeechSynthesisUtterance(textToRead);
+        utterance.lang = 'en-US';
+        utterance.rate = isSlow ? 0.6 : 0.9;
+
+        utterance.onend = function() {
+            document.getElementById('playBtn').classList.remove('btn-active');
+        };
+
+        synth.speak(utterance);
+        document.getElementById('playBtn').classList.add('btn-active');
+    }
+
+    function pauseAudio() {
+        if (synth.speaking && !synth.paused) {
+            synth.pause();
+            document.getElementById('playBtn').classList.remove('btn-active');
+        }
+    }
+
+    function toggleSlowMode() {
+        isSlow = !isSlow;
+        const btn = document.getElementById('slowBtn');
+        if (isSlow) {
+            btn.textContent = '🐢 Slow Mode: ON';
+            btn.style.backgroundColor = '#e67e22';
+        } else {
+            btn.textContent = '🐢 Slow Mode: OFF';
+            btn.style.backgroundColor = '#6c757d';
+        }
+
+        if (synth.speaking) {
+            synth.cancel();
+            playAudio();
+        }
+    }
+
+    // Modal popup function
+    function showPopup(word, type, translation) {
+        currentWordText = word;
+        document.getElementById('modalWord').textContent = word;
+        
+        const typeElem = document.getElementById('modalType');
+        typeElem.textContent = type;
+        typeElem.className = 'modal-type';
+        if(type === 'verb') typeElem.classList.add('type-verb');
+        else if(type === 'adjective') typeElem.classList.add('type-adj');
+        else typeElem.classList.add('type-noun');
+
+        document.getElementById('modalTranslation').textContent = '🇧🇷 ' + translation;
+        document.getElementById('wordModal').style.display = 'flex';
+
+        speakCurrentWord();
+    }
+
+    function closePopup() {
+        document.getElementById('wordModal').style.display = 'none';
+    }
+
+    function speakCurrentWord() {
+        if (currentWordText) {
+            const wordUtterance = new SpeechSynthesisUtterance(currentWordText);
+            wordUtterance.lang = 'en-US';
+            wordUtterance.rate = 0.8;
+            synth.speak(wordUtterance);
+        }
+    }
+
+    // Close modal on outer click
+    window.onclick = function(event) {
+        const modal = document.getElementById('wordModal');
+        if (event.target === modal) {
+            closePopup();
+        }
+    }
+
+    // Quiz evaluation
+    const answers = {
+        q1: { ans: "False", exp: "Incorrect. They all live on the same street (Cotswold Gardens)!" },
+        q2: { ans: "True", exp: "Correct! There are 66 family members on the same street." },
+        q3: { ans: "False", exp: "Incorrect. They have 15 houses, not 20." },
+        q4: { ans: "True", exp: "Correct! Ellie is 4 weeks old." },
+        q5: { ans: "False", exp: "Incorrect. Great-grandfather Joe is 76 years old." },
+        q6: { ans: "True", exp: "Correct! Catherine and George have 6 children and 15 grandchildren." },
+        q7: { ans: "False", exp: "Incorrect. Marganne says 'We like living in the same street. It's lovely...'" },
+        q8: { ans: "True", exp: "Correct! At Christmas or birthdays, 66 people go to one house." },
+        q9: { ans: "True", exp: "Correct! Neighbour Sandra Ross is 41 years old." },
+        q10: { ans: "False", exp: "Incorrect. Dave agrees and says 'We love living in such a friendly street.'" }
+    };
+
+    function checkAnswers() {
+        let score = 0;
+        let total = 10;
+
+        for (let i = 1; i <= total; i++) {
+            const qName = 'q' + i;
+            const selected = document.querySelector(`input[name="${qName}"]:checked`);
+            const feedbackElem = document.getElementById('fb' + i);
+
+            if (!selected) {
+                feedbackElem.textContent = "⚠️ Please select an answer.";
+                feedbackElem.className = "feedback incorrect";
+                feedbackElem.style.display = "block";
+                continue;
+            }
+
+            if (selected.value === answers[qName].ans) {
+                score++;
+                feedbackElem.textContent = "✓ " + answers[qName].exp;
+                feedbackElem.className = "feedback correct";
+            } else {
+                feedbackElem.textContent = "✗ " + answers[qName].exp;
+                feedbackElem.className = "feedback incorrect";
+            }
+            feedbackElem.style.display = "block";
+        }
+
+        const scoreBoard = document.getElementById('scoreBoard');
+        scoreBoard.innerHTML = `You scored ${score} out of ${total}! (${(score/total)*100}%)`;
+        scoreBoard.style.display = "block";
+        scoreBoard.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

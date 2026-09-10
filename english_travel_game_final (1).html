@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Regia Class - Inglês para Viagem Interativo</title>
+    <style>
+        :root {
+            --brand-red: #c8102e;
+            --brand-navy: #00205b;
+            --brand-gold: #d4af37;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
+            --radius: 18px;
+            --shadow: 0 10px 25px -5px rgba(0, 32, 91, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #0b132b;
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            max-height: 920px;
+            background-color: var(--bg-color);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+        }
+
+        @media (min-width: 500px) {
+            .app-container {
+                height: 90vh;
+                border-radius: 28px;
+                border: 6px solid var(--brand-navy);
+            }
+        }
+
+        /* Header Fixado com a Logo Oficial Regia Class */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            z-index: 100;
+            border-bottom: 3px solid var(--brand-red);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .logo-wrapper {
+            height: 52px;
+            width: 220px;
+            display: flex;
+            align-items: center;
+        }
+
+        .home-btn {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--brand-navy);
+            transition: all 0.2s;
+        }
+
+        .home-btn:active {
+            transform: scale(0.92);
+            background: #e2e8f0;
+        }
+
+        /* Scroll Area para Conteúdo */
+        .screen-content {
+            flex: 1;
+            margin-top: 80px;
+            margin-bottom: 75px;
+            overflow-y: auto;
+            padding: 18px;
+            display: none;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        .screen-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Banner de Início / Índice */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--brand-navy), #1e3a8a);
+            color: white;
+            padding: 20px 16px;
+            border-radius: var(--radius);
+            margin-bottom: 18px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--brand-red);
+        }
+
+        .hero-banner h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .hero-banner p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            line-height: 1.35;
+        }
+
+        .section-label {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--brand-navy);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modules-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .module-item {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .module-item:active {
+            transform: scale(0.98);
+            background: #f8fafc;
+        }
+
+        .module-badge {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #e0e7ff;
+            color: var(--brand-navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .module-details {
+            flex: 1;
+        }
+
+        .module-details h3 {
+            font-size: 0.92rem;
+            color: var(--brand-navy);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .module-details p {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .quiz-item {
+            background: linear-gradient(135deg, var(--brand-red), #991b1b);
+            border: none;
+        }
+
+        .quiz-item .module-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        .quiz-item .module-details h3,
+        .quiz-item .module-details p,
+        .quiz-item .arrow {
+            color: white;
+        }
+
+        /* Módulos e Diálogos Interativos */
+        .scene-header {
+            margin-bottom: 12px;
+        }
+
+        .scene-tag {
+            display: inline-block;
+            background: #fee2e2;
+            color: var(--brand-red);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .scene-title {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--brand-navy);
+        }
+
+        .scene-image-card {
+            width: 100%;
+            height: 150px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+            border: 2px solid #ffffff;
+        }
+
+        .scene-image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Cards de Diálogo e Falas (Perguntas vs Respostas) */
+        .dialog-card {
+            background: var(--card-bg);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 12px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+            border-left: 4px solid var(--brand-navy);
+        }
+
+        .dialog-card.question-card {
+            border-left-color: var(--brand-red);
+            background: #fff5f5;
+        }
+
+        .dialog-card.answer-card {
+            border-left-color: #10b981;
+            background: #f0fdf4;
+            margin-left: 12px;
+        }
+
+        .speaker-label {
+            font-size: 0.72rem;
+            font-weight: 800;
+            color: var(--brand-red);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .dialog-card.answer-card .speaker-label {
+            color: #047857;
+        }
+
+        .phrase-en {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--brand-navy);
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .phrase-pt {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        /* Barra de Áudio com Play, Slow Mode e Stop */
+        .audio-bar {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .audio-btn {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--brand-navy);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.2s;
+        }
+
+        .audio-btn.primary {
+            background: var(--brand-navy);
+            color: white;
+            border-color: var(--brand-navy);
+        }
+
+        .audio-btn.slow {
+            background: #fef3c7;
+            color: #92400e;
+            border-color: #fde68a;
+        }
+
+        .audio-btn.stop {
+            background: #fee2e2;
+            color: #991b1b;
+            border-color: #fca5a5;
+        }
+
+        .audio-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Footer de Navegação */
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 75px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            z-index: 100;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .nav-btn {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--brand-navy);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn.primary {
+            background: var(--brand-red);
+            color: white;
+            border-color: var(--brand-red);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .nav-btn:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        .page-badge {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--brand-navy);
+            background: #e0e7ff;
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        /* Quiz Final Styles */
+        .quiz-progress {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background: var(--brand-red);
+            width: 10%;
+            transition: width 0.3s ease;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .question-title {
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: var(--brand-navy);
+            margin-bottom: 14px;
+            line-height: 1.35;
+        }
+
+        .options-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-item {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .option-item.correct {
+            border-color: #10b981;
+            background-color: #ecfdf5;
+            color: #065f46;
+        }
+
+        .option-item.incorrect {
+            border-color: #ef4444;
+            background-color: #fef2f2;
+            color: #991b1b;
+        }
+
+        .feedback-box {
+            margin-top: 14px;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: none;
+        }
+
+        .feedback-box.show { display: block; }
+        .feedback-box.correct { background: #d1fae5; color: #065f46; }
+        .feedback-box.incorrect { background: #fee2e2; color: #991b1b; }
+
+        /* Results Screen */
+        .results-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px 18px;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .score-display {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--brand-navy);
+            margin: 12px 0;
+        }
+
+        .restart-btn {
+            background: linear-gradient(135deg, var(--brand-red), #991b1b);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 16px;
+            box-shadow: 0 4px 12px rgba(200, 16, 46, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- Header Fixo com a Logo Oficial Regia Class -->
+    <header>
+        <div class="logo-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 180" width="100%" height="100%">
+  <!-- Shield Outline -->
+  <g transform="translate(10, 10)">
+    <!-- Outer Border -->
+    <path d="M 10 10 L 110 10 L 110 90 C 110 130 60 155 60 155 C 60 155 10 130 10 90 Z" fill="#ffffff" stroke="#00205b" stroke-width="4"/>
+    <!-- Inner Shield Area -->
+    <path d="M 14 14 L 106 14 L 106 88 C 106 125 60 148 60 148 C 60 148 14 125 14 88 Z" fill="#00205b"/>
+    <!-- Top Red Block -->
+    <path d="M 14 14 L 106 14 L 106 52 L 14 52 Z" fill="#c8102e"/>
+    <!-- Crown inside Red Block -->
+    <path d="M 42 38 L 48 24 L 60 32 L 72 24 L 78 38 Z" fill="#ffffff"/>
+    <circle cx="48" cy="22" r="2" fill="#ffffff"/>
+    <circle cx="60" cy="29" r="2" fill="#ffffff"/>
+    <circle cx="72" cy="22" r="2" fill="#ffffff"/>
+    <!-- White Vertical Line Divider -->
+    <line x1="60" y1="52" x2="60" y2="145" stroke="#ffffff" stroke-width="3"/>
+    <!-- Open Book Icon Left -->
+    <g transform="translate(22, 72)">
+      <path d="M 2 8 Q 14 2 26 8 L 26 26 Q 14 20 2 26 Z" fill="#ffffff"/>
+      <path d="M 26 8 Q 38 2 50 8 L 50 26 Q 38 20 26 26 Z" fill="#ffffff"/>
+      <path d="M 26 12 L 26 27" stroke="#c8102e" stroke-width="2"/>
+    </g>
+    <!-- Capital Letter R Right -->
+    <text x="70" y="104" font-family="'Georgia', serif" font-size="36" font-weight="bold" fill="#ffffff">R</text>
+  </g>
+  <!-- Text Brand Name -->
+  <g transform="translate(145, 80)">
+    <text x="0" y="0" font-family="'Georgia', serif" font-size="44" font-weight="bold" fill="#00205b" letter-spacing="1">REGIA CLASS</text>
+    <!-- Subtitle with side dashes -->
+    <line x1="25" y1="26" x2="80" y2="26" stroke="#00205b" stroke-width="2"/>
+    <text x="95" y="32" font-family="'Georgia', serif" font-size="20" font-style="italic" fill="#00205b" letter-spacing="0.5">To be bilingual</text>
+    <line x1="225" y1="26" x2="280" y2="26" stroke="#00205b" stroke-width="2"/>
+  </g>
+</svg>
+        </div>
+        <button class="home-btn" onclick="goToScreen(0)" title="Voltar ao Início">🏠</button>
+    </header>
+
+    <!-- TELA 0: ÍNDICE DE NAVEGAÇÃO -->
+    <div class="screen-content active" id="screen-0">
+        <div class="hero-banner">
+            <h1>Inglês para Viagem</h1>
+            <p>Guia Prático Definitivo pela Teacher Regiane Costa. Ouça perguntas e respostas reais para interagir na sua viagem!</p>
+        </div>
+
+        <div class="section-label">📚 Módulos de Exploração</div>
+
+        <div class="modules-list">
+            <div class="module-item" onclick="goToScreen(1)">
+                <div class="module-badge">🛫</div>
+                <div class="module-details">
+                    <h3>1. Aeroporto & Embarque</h3>
+                    <p>Check-in, bagagens, portão e diálogos com atendente</p>
+                </div>
+                <div style="color: #94a3b8; font-weight: bold;">➔</div>
+            </div>
+
+            <div class="module-item" onclick="goToScreen(2)">
+                <div class="module-badge">🛂</div>
+                <div class="module-details">
+                    <h3>2. Imigração & Passaportes</h3>
+                    <p>Perguntas do oficial com respostas A1 e B1</p>
+                </div>
+                <div style="color: #94a3b8; font-weight: bold;">➔</div>
+            </div>
+
+            <div class="module-item" onclick="goToScreen(3)">
+                <div class="module-badge">🏨</div>
+                <div class="module-details">
+                    <h3>3. Hotelaria & Recepção</h3>
+                    <p>Check-in, problemas no quarto e apoio na estadia</p>
+                </div>
+                <div style="color: #94a3b8; font-weight: bold;">➔</div>
+            </div>
+
+            <div class="module-item" onclick="goToScreen(4)">
+                <div class="module-badge">🍽️</div>
+                <div class="module-details">
+                    <h3>4. Restaurantes & Refeições</h3>
+                    <p>Pedir mesa, cardápio, restrições e conta</p>
+                </div>
+                <div style="color: #94a3b8; font-weight: bold;">➔</div>
+            </div>
+
+            <div class="module-item" onclick="goToScreen(5)">
+                <div class="module-badge">🛍️</div>
+                <div class="module-details">
+                    <h3>5. Compras, Lojas & Provadores</h3>
+                    <p>Tamanhos, descontos e formas de pagamento</p>
+                </div>
+                <div style="color: #94a3b8; font-weight: bold;">➔</div>
+            </div>
+
+            <div class="module-item" onclick="goToScreen(6)">
+                <div class="module-badge">🗺️</div>
+                <div class="module-details">
+                    <h3>6. Direções & Transporte</h3>
+                    <p>Pedir informações, táxi, metrô e localização</p>
+                </div>
+                <div style="color: #94a3b8; font-weight: bold;">➔</div>
+            </div>
+
+            <div class="module-item" onclick="goToScreen(7)">
+                <div class="module-badge">🏥</div>
+                <div class="module-details">
+                    <h3>7. Farmácia & Emergências</h3>
+                    <p>Sintomas de saúde, médica e emergências</p>
+                </div>
+                <div style="color: #94a3b8; font-weight: bold;">➔</div>
+            </div>
+
+            <div class="module-item quiz-item" onclick="goToScreen(8)">
+                <div class="module-badge">🏆</div>
+                <div class="module-details">
+                    <h3>8. Quiz Final de Fixação</h3>
+                    <p>10 questões situacionais do e-book com resultado</p>
+                </div>
+                <div class="arrow" style="font-weight: bold;">➔</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÓDULO 1: AEROPORTO & EMBARQUE -->
+    <div class="screen-content" id="screen-1">
+        <div class="scene-header">
+            <span class="scene-tag">Módulo 1</span>
+            <h2 class="scene-title">Aeroporto & Embarque</h2>
+        </div>
+
+        <div class="scene-image-card">
+            <img src="https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=800&q=80" alt="Aeroporto">
+        </div>
+
+        <!-- Diálogo 1 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Pergunta ao Balcão)</div>
+            <div class="phrase-en">"Where is the check-in counter for my flight?"</div>
+            <div class="phrase-pt">Onde fica o balcão de check-in para o meu voo?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Where is the check-in counter for my flight?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Where is the check-in counter for my flight?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">✈️ Agent (Atendente)</div>
+            <div class="phrase-en">"It is at terminal 2, counter B."</div>
+            <div class="phrase-pt">Fica no terminal 2, balcão B.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('It is at terminal 2, counter B.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('It is at terminal 2, counter B.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <!-- Diálogo 2 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Sua Pergunta)</div>
+            <div class="phrase-en">"How many bags can I check in?"</div>
+            <div class="phrase-pt">Quantas malas eu posso despachar?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('How many bags can I check in?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('How many bags can I check in?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">✈️ Agent (Atendente)</div>
+            <div class="phrase-en">"You can check in two bags up to 23 kg each."</div>
+            <div class="phrase-pt">Você pode despachar duas malas de até 23 kg cada.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('You can check in two bags up to 23 kg each.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('You can check in two bags up to 23 kg each.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÓDULO 2: IMIGRAÇÃO & PASSAPORTES -->
+    <div class="screen-content" id="screen-2">
+        <div class="scene-header">
+            <span class="scene-tag">Módulo 2</span>
+            <h2 class="scene-title">Imigração & Passaportes</h2>
+        </div>
+
+        <div class="scene-image-card">
+            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" alt="Imigração">
+        </div>
+
+        <!-- Diálogo 1 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👮 Officer (Oficial de Imigração)</div>
+            <div class="phrase-en">"Good afternoon. May I see your passport, please?"</div>
+            <div class="phrase-pt">Boa tarde. Posso ver seu passaporte, por favor?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Good afternoon. May I see your passport, please?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Good afternoon. May I see your passport, please?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">💬 Aluno (Resposta A1 - Iniciante)</div>
+            <div class="phrase-en">"Yes, here is my passport."</div>
+            <div class="phrase-pt">Sim, aqui está meu passaporte.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Yes, here is my passport.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Yes, here is my passport.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card" style="background: #eef2ff; border-left-color: #4f46e5;">
+            <div class="speaker-label" style="color: #4f46e5;">💬 Aluno (Resposta B1 - Intermediário)</div>
+            <div class="phrase-en">"Of course. Here is my passport and entry form."</div>
+            <div class="phrase-pt">Claro. Aqui está meu passaporte e formulário de entrada.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Of course. Here is my passport and entry form.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Of course. Here is my passport and entry form.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <!-- Diálogo 2 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👮 Officer (Oficial de Imigração)</div>
+            <div class="phrase-en">"What is the purpose of your stay?"</div>
+            <div class="phrase-pt">Qual é o objetivo da sua estadia?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('What is the purpose of your stay?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('What is the purpose of your stay?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">💬 Aluno (Resposta A1)</div>
+            <div class="phrase-en">"I am here on vacation."</div>
+            <div class="phrase-pt">Estou aqui de férias.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('I am here on vacation.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('I am here on vacation.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÓDULO 3: HOTELARIA & RECEPÇÃO -->
+    <div class="screen-content" id="screen-3">
+        <div class="scene-header">
+            <span class="scene-tag">Módulo 3</span>
+            <h2 class="scene-title">Hotelaria & Recepção</h2>
+        </div>
+
+        <div class="scene-image-card">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Hotel">
+        </div>
+
+        <!-- Diálogo 1 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Sua Fala no Check-in)</div>
+            <div class="phrase-en">"Hello, I'd like to check in. I have a reservation under Costa."</div>
+            <div class="phrase-pt">Olá, gostaria de fazer o check-in. Tenho reserva no nome Costa.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Hello, I would like to check in. I have a reservation under the name Costa.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Hello, I would like to check in. I have a reservation under the name Costa.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">🛎️ Recepcionista</div>
+            <div class="phrase-en">"Welcome! Here is your key card for room 302."</div>
+            <div class="phrase-pt">Seja bem-vindo! Aqui está o cartão do seu quarto 302.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Welcome! Here is your key card for room 302.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Welcome! Here is your key card for room 302.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <!-- Diálogo 2 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Problema no Quarto)</div>
+            <div class="phrase-en">"The air conditioning in my room is not working."</div>
+            <div class="phrase-pt">O ar-condicionado do meu quarto não está funcionando.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('The air conditioning in my room is not working.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('The air conditioning in my room is not working.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">🛎️ Recepcionista</div>
+            <div class="phrase-en">"I'm sorry. I'll send maintenance right away."</div>
+            <div class="phrase-pt">Sinto muito. Vou enviar a manutenção imediatamente.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('I am sorry. I will send maintenance right away.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('I am sorry. I will send maintenance right away.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÓDULO 4: RESTAURANTES & REFEIÇÕES -->
+    <div class="screen-content" id="screen-4">
+        <div class="scene-header">
+            <span class="scene-tag">Módulo 4</span>
+            <h2 class="scene-title">Restaurantes & Pedidos</h2>
+        </div>
+
+        <div class="scene-image-card">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="Restaurante">
+        </div>
+
+        <!-- Diálogo 1 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Chegando ao Restaurante)</div>
+            <div class="phrase-en">"A table for two, please. Do you have outdoor seating?"</div>
+            <div class="phrase-pt">Uma mesa para dois, por favor. Vocês têm assentos ao ar livre?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('A table for two, please. Do you have outdoor seating?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('A table for two, please. Do you have outdoor seating?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">🍷 Garçom</div>
+            <div class="phrase-en">"Yes, right this way please. Here are your menus."</div>
+            <div class="phrase-pt">Sim, por aqui por favor. Aqui estão os cardápios.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Yes, right this way please. Here are your menus.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Yes, right this way please. Here are your menus.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <!-- Diálogo 2 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Pedindo a Conta)</div>
+            <div class="phrase-en">"Can we have the bill, please? Can I pay by card?"</div>
+            <div class="phrase-pt">Pode trazer a conta, por favor? Posso pagar com cartão?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Can we have the bill, please? Can I pay by card?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Can we have the bill, please? Can I pay by card?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">🍷 Garçom</div>
+            <div class="phrase-en">"Certainly! I'll bring the card machine."</div>
+            <div class="phrase-pt">Com certeza! Vou trazer a máquina de cartão.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Certainly! I will bring the card machine.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Certainly! I will bring the card machine.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÓDULO 5: COMPRAS, LOJAS & PROVADORES -->
+    <div class="screen-content" id="screen-5">
+        <div class="scene-header">
+            <span class="scene-tag">Módulo 5</span>
+            <h2 class="scene-title">Compras & Provadores</h2>
+        </div>
+
+        <div class="scene-image-card">
+            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Loja e Compras">
+        </div>
+
+        <!-- Diálogo 1 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Na Loja de Roupas)</div>
+            <div class="phrase-en">"Where is the fitting room? Can I try this on?"</div>
+            <div class="phrase-pt">Onde fica o provador? Posso experimentar isto?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Where is the fitting room? Can I try this on?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Where is the fitting room? Can I try this on?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">🛍️ Vendedor(a)</div>
+            <div class="phrase-en">"The fitting rooms are in the back on the left."</div>
+            <div class="phrase-pt">Os provadores ficam ao fundo, à esquerda.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('The fitting rooms are in the back on the left.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('The fitting rooms are in the back on the left.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <!-- Diálogo 2 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Perguntando de Desconto)</div>
+            <div class="phrase-en">"Is this item on sale? Is there a discount?"</div>
+            <div class="phrase-pt">Este item está em promoção? Tem algum desconto?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Is this item on sale? Is there a discount?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Is this item on sale? Is there a discount?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">🛍️ Vendedor(a)</div>
+            <div class="phrase-en">"Yes! It has a twenty percent discount today."</div>
+            <div class="phrase-pt">Sim! Está com vinte por cento de desconto hoje.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Yes! It has a twenty percent discount today.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Yes! It has a twenty percent discount today.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÓDULO 6: DIREÇÕES & TRANSPORTE -->
+    <div class="screen-content" id="screen-6">
+        <div class="scene-header">
+            <span class="scene-tag">Módulo 6</span>
+            <h2 class="scene-title">Direções & Localização</h2>
+        </div>
+
+        <div class="scene-image-card">
+            <img src="https://images.unsplash.com/photo-1494515843206-f3117d3f51b7?auto=format&fit=crop&w=800&q=80" alt="Cidade e Transporte">
+        </div>
+
+        <!-- Diálogo 1 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Pedindo Informação na Rua)</div>
+            <div class="phrase-en">"Excuse me, where is the nearest subway station?"</div>
+            <div class="phrase-pt">Com licença, onde fica a estação de metrô mais próxima?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Excuse me, where is the nearest subway station?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Excuse me, where is the nearest subway station?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">🏙️ Pedestre local</div>
+            <div class="phrase-en">"Go straight ahead for two blocks, then turn left."</div>
+            <div class="phrase-pt">Siga em frente por dois quarteirões, depois vire à esquerda.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Go straight ahead for two blocks, then turn left.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Go straight ahead for two blocks, then turn left.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÓDULO 7: FARMÁCIA & EMERGÊNCIAS -->
+    <div class="screen-content" id="screen-7">
+        <div class="scene-header">
+            <span class="scene-tag">Módulo 7</span>
+            <h2 class="scene-title">Farmácia & Saúde</h2>
+        </div>
+
+        <div class="scene-image-card">
+            <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=800&q=80" alt="Farmacia e Saúde">
+        </div>
+
+        <!-- Diálogo 1 -->
+        <div class="dialog-card question-card">
+            <div class="speaker-label">👤 Aluno (Na Farmácia)</div>
+            <div class="phrase-en">"I don't feel well. Do you have something for a headache?"</div>
+            <div class="phrase-pt">Não me sinto bem. Você tem algo para dor de cabeça?</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('I do not feel well. Do you have something for a headache?', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('I do not feel well. Do you have something for a headache?', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+
+        <div class="dialog-card answer-card">
+            <div class="speaker-label">💊 Farmacêutico(a)</div>
+            <div class="phrase-en">"Yes, take this medicine with water after eating."</div>
+            <div class="phrase-pt">Sim, tome este remédio com água após comer.</div>
+            <div class="audio-bar">
+                <button class="audio-btn primary" onclick="speak('Yes, take this medicine with water after eating.', 1)">🔊 Ouvir</button>
+                <button class="audio-btn slow" onclick="speak('Yes, take this medicine with water after eating.', 0.6)">🐢 Lento</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MÓDULO 8: QUIZ FINAL DE FIXAÇÃO -->
+    <div class="screen-content" id="screen-8">
+        <div class="scene-header">
+            <span class="scene-tag" style="background: #fee2e2; color: var(--brand-red);">Módulo 8</span>
+            <h2 class="scene-title">Quiz de Fixação (10 Questões)</h2>
+        </div>
+
+        <div class="quiz-progress">
+            <div class="quiz-progress-bar" id="quiz-bar"></div>
+        </div>
+
+        <div id="quiz-content">
+            <div class="question-card">
+                <div class="question-title" id="question-text">Carregando pergunta...</div>
+                <div class="options-group" id="options-box"></div>
+                <div class="feedback-box" id="feedback-box"></div>
+            </div>
+        </div>
+
+        <div id="results-content" style="display: none;">
+            <div class="results-card">
+                <h3 style="color: var(--brand-navy);">Parabéns por concluir o Quiz!</h3>
+                <p style="color: var(--text-muted); margin-top: 6px;">Sua pontuação no simulado Regia Class:</p>
+                <div class="score-display" id="score-text">0/10</div>
+                <p id="score-msg" style="color: var(--text-dark); font-weight: 700; font-size: 0.95rem;"></p>
+                <button class="restart-btn" onclick="resetQuiz()">🔄 Refazer o Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Fixo de Navegação -->
+    <footer>
+        <button class="nav-btn" id="prev-btn" onclick="navigate(-1)">◀ Anterior</button>
+        <span class="page-badge" id="page-indicator">Índice</span>
+        <button class="nav-btn primary" id="next-btn" onclick="navigate(1)">Próximo ▶</button>
+    </footer>
+</div>
+
+<script>
+    let currentScreen = 0;
+    const totalScreens = 8;
+
+    let currentQuestionIdx = 0;
+    let score = 0;
+    let optionChosen = false;
+
+    // 10 Questões baseadas no E-book Oficial
+    const ebookQuizQuestions = [
+        {
+            question: "1. At the reception: You arrive at the hotel. What do you say?",
+            options: ["I need a doctor.", "I have a reservation.", "Where is the menu?"],
+            correct: 1,
+            explanation: "Correto! 'I have a reservation' é a fala ideal no check-in."
+        },
+        {
+            question: "2. You want to enter your room. What do you ask?",
+            options: ["Could I have the room key, please?", "How much is this?", "Where is the gate?"],
+            correct: 0,
+            explanation: "Exato! 'Could I have the room key, please?' pede a chave do quarto."
+        },
+        {
+            question: "3. You arrive at the airport first. You ask:",
+            options: ["Where is the check-in counter?", "Where is the fitting room?", "Where is the hospital?"],
+            correct: 0,
+            explanation: "Perfeito! 'Where is the check-in counter?' localiza o balcão da cia aérea."
+        },
+        {
+            question: "4. The officer talks to you: 'May I see your passport?'",
+            options: ["Yes, here is my passport.", "Can I see the menu?", "Can I pay by card?"],
+            correct: 0,
+            explanation: "Muito bem! Resposta adequada e clara para o oficial."
+        },
+        {
+            question: "5. After landing, you need your suitcase. You ask:",
+            options: ["Where is the boarding gate?", "Where is baggage claim?", "Where is the lobby?"],
+            correct: 1,
+            explanation: "Correto! 'Baggage claim' é a área de restituição de bagagens."
+        },
+        {
+            question: "6. You are hungry in the morning at the hotel:",
+            options: ["What time is breakfast?", "What time is boarding?", "Is there a discount?"],
+            correct: 0,
+            explanation: "Isso aí! Pergunta sobre o horário do café da manhã."
+        },
+        {
+            question: "7. You arrive at a restaurant with a friend:",
+            options: ["Two tickets, please.", "A table for two, please.", "I have a flight."],
+            correct: 1,
+            explanation: "Perfeito! 'A table for two, please' pede mesa para duas pessoas."
+        },
+        {
+            question: "8. You want to choose food in a restaurant:",
+            options: ["Can I see the menu, please?", "Can I take photos?", "Where is the gate?"],
+            correct: 0,
+            explanation: "Exato! 'Can I see the menu, please?' pede o cardápio."
+        },
+        {
+            question: "9. You finished eating and want to pay:",
+            options: ["Can we have the bill, please?", "Can I check in?", "Where is the elevator?"],
+            correct: 0,
+            explanation: "Correto! 'The bill' ou 'check' é a conta."
+        },
+        {
+            question: "10. You want to try clothes at a store:",
+            options: ["Can I try it on?", "Can I check out?", "Can I board now?"],
+            correct: 0,
+            explanation: "Muito bem! 'Can I try it on?' pergunta se pode experimentar a roupa."
+        }
+    ];
+
+    function speak(text, rate = 1) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = rate;
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    function stopAudio() {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+        }
+    }
+
+    function goToScreen(index) {
+        stopAudio();
+        document.querySelectorAll('.screen-content').forEach(s => s.classList.remove('active'));
+
+        currentScreen = index;
+        document.getElementById(`screen-${currentScreen}`).classList.add('active');
+
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const indicator = document.getElementById('page-indicator');
+
+        if (currentScreen === 0) {
+            prevBtn.disabled = true;
+            nextBtn.disabled = false;
+            indicator.innerText = "Índice";
+        } else if (currentScreen === totalScreens) {
+            prevBtn.disabled = false;
+            nextBtn.disabled = true;
+            indicator.innerText = "Quiz Final";
+            startQuiz();
+        } else {
+            prevBtn.disabled = false;
+            nextBtn.disabled = false;
+            indicator.innerText = `Módulo ${currentScreen}/${totalScreens - 1}`;
+        }
+
+        document.getElementById(`screen-${currentScreen}`).scrollTop = 0;
+    }
+
+    function navigate(dir) {
+        let target = currentScreen + dir;
+        if (target >= 0 && target <= totalScreens) {
+            goToScreen(target);
+        }
+    }
+
+    function startQuiz() {
+        currentQuestionIdx = 0;
+        score = 0;
+        document.getElementById('quiz-content').style.display = 'block';
+        document.getElementById('results-content').style.display = 'none';
+        renderQuestion();
+    }
+
+    function renderQuestion() {
+        optionChosen = false;
+        const q = ebookQuizQuestions[currentQuestionIdx];
+        document.getElementById('question-text').innerText = q.question;
+
+        const progressPercent = ((currentQuestionIdx + 1) / ebookQuizQuestions.length) * 100;
+        document.getElementById('quiz-bar').style.width = `${progressPercent}%`;
+
+        const feedbackBox = document.getElementById('feedback-box');
+        feedbackBox.className = 'feedback-box';
+        feedbackBox.style.display = 'none';
+
+        const optionsBox = document.getElementById('options-box');
+        optionsBox.innerHTML = '';
+
+        q.options.forEach((optText, i) => {
+            const btn = document.createElement('div');
+            btn.className = 'option-item';
+            btn.innerHTML = `<span>${optText}</span> <button class="audio-btn slow" style="padding: 2px 8px; font-size: 0.72rem;" onclick="event.stopPropagation(); speak('${optText.replace(/'/g, "\'")}', 0.9)">🔊</button>`;
+            btn.onclick = () => handleChoice(i, btn);
+            optionsBox.appendChild(btn);
+        });
+    }
+
+    function handleChoice(chosenIdx, element) {
+        if (optionChosen) return;
+        optionChosen = true;
+
+        const q = ebookQuizQuestions[currentQuestionIdx];
+        const allOptions = document.querySelectorAll('.option-item');
+        const feedbackBox = document.getElementById('feedback-box');
+
+        if (chosenIdx === q.correct) {
+            score++;
+            element.classList.add('correct');
+            feedbackBox.innerText = "✓ " + q.explanation;
+            feedbackBox.className = "feedback-box correct show";
+        } else {
+            element.classList.add('incorrect');
+            allOptions[q.correct].classList.add('correct');
+            feedbackBox.innerText = "✗ " + q.explanation;
+            feedbackBox.className = "feedback-box incorrect show";
+        }
+
+        setTimeout(() => {
+            currentQuestionIdx++;
+            if (currentQuestionIdx < ebookQuizQuestions.length) {
+                renderQuestion();
+            } else {
+                displayResults();
+            }
+        }, 2200);
+    }
+
+    function displayResults() {
+        document.getElementById('quiz-content').style.display = 'none';
+        const resBox = document.getElementById('results-content');
+        resBox.style.display = 'block';
+
+        document.getElementById('score-text').innerText = `${score}/10`;
+        const msg = document.getElementById('score-msg');
+
+        if (score >= 8) {
+            msg.innerText = "🌟 Excelente! Você está super preparado para sua viagem com a Regia Class!";
+        } else if (score >= 5) {
+            msg.innerText = "👍 Muito bom! Vale a pena revisar os módulos e escutar os áudios novamente.";
+        } else {
+            msg.innerText = "📚 Continue praticando! Acelere seu aprendizado praticando com os áudios lentos.";
+        }
+    }
+
+    function resetQuiz() {
+        startQuiz();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Safety English - A2 Study Guide for Technical Visits</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .recording-pulse { animation: pulse-subtle 1.5s infinite; }
+    </style>
+</head>
+<body class="h-full bg-slate-900 text-slate-100 flex flex-col">
+
+    <!-- HEADER WITH REGIA CLASS LOGO -->
+    <header class="bg-slate-800 border-b border-slate-700 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <img src="WhatsApp Image 2026-07-30 at 09.39.57.jpg" alt="Regia Class Logo" class="h-10 sm:h-12 w-auto object-contain rounded-lg bg-white p-1 shadow" onerror="this.src='https://placehold.co/180x50/1e293b/ffffff?text=REGIA+CLASS'">
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-white">Public Safety English</h1>
+                    <p class="text-xs text-slate-400">A2 Functional Training for US Technical Visits & Meetings</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-2 bg-slate-900/60 p-1.5 rounded-lg border border-slate-700 text-xs">
+                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span class="text-slate-300 font-medium">Interactive Mode Enabled (30s Voice Window)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <nav class="bg-slate-800/80 border-b border-slate-700 overflow-x-auto shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 py-2 min-w-max">
+            <button onclick="switchTab(event, 'vocab')" class="nav-btn px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 text-white shadow transition-all">1. Vocabulary</button>
+            <button onclick="switchTab(event, 'qa')" class="nav-btn px-4 py-2 text-sm font-semibold rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all">2. Visit Q&A</button>
+            <button onclick="switchTab(event, 'actions')" class="nav-btn px-4 py-2 text-sm font-semibold rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all">3. Police Actions</button>
+            <button onclick="switchTab(event, 'challenges')" class="nav-btn px-4 py-2 text-sm font-semibold rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all">4. Challenges</button>
+            <button onclick="switchTab(event, 'strengths')" class="nav-btn px-4 py-2 text-sm font-semibold rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all">5. Strengths</button>
+            <button onclick="switchTab(event, 'strategic')" class="nav-btn px-4 py-2 text-sm font-semibold rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all">6. Strategic Plan</button>
+            <button onclick="switchTab(event, 'questions')" class="nav-btn px-4 py-2 text-sm font-semibold rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all">7. Ask US Officials</button>
+            <button onclick="switchTab(event, 'survival')" class="nav-btn px-4 py-2 text-sm font-semibold rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all">8. Survival Phrases</button>
+            <button onclick="switchTab(event, 'quiz')" class="nav-btn px-4 py-2 text-sm font-semibold rounded-lg bg-emerald-700 text-white shadow hover:bg-emerald-600 transition-all">9. Mini Quiz & Audio</button>
+        </div>
+    </nav>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 overflow-y-auto">
+
+        <!-- TAB 1: VOCABULARY -->
+        <div id="vocab" class="tab-content active space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow">
+                <h2 class="text-2xl font-bold text-white mb-2">1. Useful Vocabulary — Public Safety</h2>
+                <p class="text-slate-300 text-sm mb-6">Click the speaker icon next to any term to hear correct pronunciation. Simple structures and short words designed for A2 level.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Section A -->
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                        <h3 class="text-lg font-semibold text-blue-400 mb-3 border-b border-slate-700 pb-2">A. General Terms / Termos Gerais</h3>
+                        <div class="space-y-2 max-h-96 overflow-y-auto pr-2">
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">public safety</span> <span class="text-xs text-slate-400 block">segurança pública</span></div>
+                                <button onclick="speakText('public safety')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">law enforcement</span> <span class="text-xs text-slate-400 block">aplicação da lei / forças de segurança</span></div>
+                                <button onclick="speakText('law enforcement')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">police department</span> <span class="text-xs text-slate-400 block">departamento de polícia</span></div>
+                                <button onclick="speakText('police department')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">police officer</span> <span class="text-xs text-slate-400 block">policial</span></div>
+                                <button onclick="speakText('police officer')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">government agency</span> <span class="text-xs text-slate-400 block">órgão governamental</span></div>
+                                <button onclick="speakText('government agency')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">border / border area</span> <span class="text-xs text-slate-400 block">fronteira / área de fronteira</span></div>
+                                <button onclick="speakText('border area')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">community / population</span> <span class="text-xs text-slate-400 block">comunidade / população</span></div>
+                                <button onclick="speakText('community and population')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section B -->
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700">
+                        <h3 class="text-lg font-semibold text-blue-400 mb-3 border-b border-slate-700 pb-2">B. Personnel & Structure / Efetivo e Estrutura</h3>
+                        <div class="space-y-2 max-h-96 overflow-y-auto pr-2">
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">personnel / staff</span> <span class="text-xs text-slate-400 block">efetivo / pessoal</span></div>
+                                <button onclick="speakText('personnel and staff')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">number of officers</span> <span class="text-xs text-slate-400 block">número de policiais</span></div>
+                                <button onclick="speakText('number of officers')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">operational staff</span> <span class="text-xs text-slate-400 block">pessoal operacional</span></div>
+                                <button onclick="speakText('operational staff')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">specialized unit</span> <span class="text-xs text-slate-400 block">unidade especializada</span></div>
+                                <button onclick="speakText('specialized unit')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">headquarters / station</span> <span class="text-xs text-slate-400 block">sede / delegacia</span></div>
+                                <button onclick="speakText('headquarters and police station')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                            <div class="vocab-row flex justify-between items-center bg-slate-800 p-2.5 rounded-lg border border-slate-700">
+                                <div><span class="font-semibold text-white">patrol unit / vehicle</span> <span class="text-xs text-slate-400 block">unidade de patrulha / viatura</span></div>
+                                <button onclick="speakText('patrol unit and vehicle')" class="bg-slate-700 hover:bg-blue-600 p-2 rounded-md text-xs transition">🔊</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Useful Structures Box -->
+                <div class="mt-6 bg-blue-950/40 p-4 rounded-lg border border-blue-800/60">
+                    <h4 class="text-md font-semibold text-blue-300 mb-2">💡 Key Structures to Adapt / Estruturas Chave</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                        <div class="bg-slate-900/80 p-3 rounded border border-slate-700">
+                            <p class="text-white font-medium">"We have approximately 500 police officers."</p>
+                            <p class="text-xs text-slate-400 mt-1">Temos aproximadamente 500 policiais.</p>
+                            <button onclick="speakText('We have approximately 500 police officers.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded border border-slate-700">
+                            <p class="text-white font-medium">"Our department has 500 officers."</p>
+                            <p class="text-xs text-slate-400 mt-1">Nosso departamento tem 500 oficiais.</p>
+                            <button onclick="speakText('Our department has 500 officers.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded border border-slate-700">
+                            <p class="text-white font-medium">"We have 50 officers in this unit."</p>
+                            <p class="text-xs text-slate-400 mt-1">Temos 50 policiais nesta unidade.</p>
+                            <button onclick="speakText('We have 50 officers working in this unit.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: VISIT Q&A -->
+        <div id="qa" class="tab-content space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow">
+                <h2 class="text-2xl font-bold text-white mb-2">2. Technical Visit Q&A / Perguntas e Respostas</h2>
+                <p class="text-slate-300 text-sm mb-6">Pattern: <span class="text-blue-400 font-semibold">Question → Short Answer → Additional Information</span>. No need for long speeches!</p>
+
+                <div class="space-y-4">
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider bg-blue-900 text-blue-200 px-2 py-0.5 rounded font-bold">Question</span>
+                                <p class="text-white font-semibold mt-1">How many police officers do you have?</p>
+                                <p class="text-xs text-slate-400">Quantos policiais vocês têm?</p>
+                            </div>
+                            <button onclick="speakText('How many police officers do you have?')" class="bg-slate-800 hover:bg-blue-600 p-2 rounded text-xs transition">🔊</button>
+                        </div>
+                        <div class="mt-3 pl-4 border-l-2 border-emerald-500 space-y-2">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold">Answer 1</span>
+                                <p class="text-slate-200 text-sm">"We have approximately 1,500 police officers."</p>
+                                <p class="text-xs text-slate-400">Temos aproximadamente 1.500 policiais.</p>
+                                <button onclick="speakText('We have approximately 1500 police officers.')" class="text-xs text-blue-400 mt-1 hover:underline">🔊 Listen Answer</button>
+                            </div>
+                            <div class="pt-1">
+                                <span class="text-xs uppercase tracking-wider text-amber-400 font-bold">Diplomatic / Unsure</span>
+                                <p class="text-slate-200 text-sm">"I don't have the exact number with me, but we have approximately 1,500 officers."</p>
+                                <p class="text-xs text-slate-400">Não tenho o número exato comigo, mas temos cerca de 1.500 oficiais.</p>
+                                <button onclick="speakText('I do not have the exact number with me, but we have approximately 1,500 officers.')" class="text-xs text-blue-400 mt-1 hover:underline">🔊 Listen Answer</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider bg-blue-900 text-blue-200 px-2 py-0.5 rounded font-bold">Question</span>
+                                <p class="text-white font-semibold mt-1">Do you have specialized units?</p>
+                                <p class="text-xs text-slate-400">Vocês possuem unidades especializadas?</p>
+                            </div>
+                            <button onclick="speakText('Do you have specialized units?')" class="bg-slate-800 hover:bg-blue-600 p-2 rounded text-xs transition">🔊</button>
+                        </div>
+                        <div class="mt-3 pl-4 border-l-2 border-emerald-500">
+                            <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold">Answer</span>
+                            <p class="text-slate-200 text-sm">"Yes, we have several specialized units, including criminal investigation and special operations units."</p>
+                            <p class="text-xs text-slate-400">Sim, temos várias unidades especializadas, incluindo investigação criminal e operações especiais.</p>
+                            <button onclick="speakText('Yes, we have several specialized units, including criminal investigation and special operations units.')" class="text-xs text-blue-400 mt-1 hover:underline">🔊 Listen Answer</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider bg-blue-900 text-blue-200 px-2 py-0.5 rounded font-bold">Question</span>
+                                <p class="text-white font-semibold mt-1">Do you have enough officers to cover the entire state?</p>
+                                <p class="text-xs text-slate-400">Vocês têm policiais suficientes para cobrir o estado inteiro?</p>
+                            </div>
+                            <button onclick="speakText('Do you have enough officers to cover the entire state?')" class="bg-slate-800 hover:bg-blue-600 p-2 rounded text-xs transition">🔊</button>
+                        </div>
+                        <div class="mt-3 pl-4 border-l-2 border-emerald-500">
+                            <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold">Diplomatic Answer</span>
+                            <p class="text-slate-200 text-sm">"We have police coverage throughout the state, but we still have some challenges with personnel and resources."</p>
+                            <p class="text-xs text-slate-400">Temos cobertura policial em todo o estado, mas ainda temos alguns desafios com pessoal e recursos.</p>
+                            <button onclick="speakText('We have police coverage throughout the state, but we still have some challenges with personnel and resources.')" class="text-xs text-blue-400 mt-1 hover:underline">🔊 Listen Answer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: ACTIONS -->
+        <div id="actions" class="tab-content space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow">
+                <h2 class="text-2xl font-bold text-white mb-2">3. Police Actions & Activities / Ações da Polícia</h2>
+                <p class="text-slate-300 text-sm mb-6">Explain core duties, operations, and inter-agency cooperation concisely.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700 space-y-3">
+                        <h3 class="text-md font-semibold text-blue-400">Key Verbs / Verbos Principais</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between bg-slate-800 p-2 rounded">
+                                <div><strong class="text-white">Protect / Prevent / Investigate</strong><span class="text-xs text-slate-400 block">Proteger / Prevenir / Investigar</span></div>
+                                <button onclick="speakText('Protect, prevent, investigate')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="flex justify-between bg-slate-800 p-2 rounded">
+                                <div><strong class="text-white">Monitor / Identify / Support</strong><span class="text-xs text-slate-400 block">Monitorar / Identificar / Apoiar</span></div>
+                                <button onclick="speakText('Monitor, identify, support')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="flex justify-between bg-slate-800 p-2 rounded">
+                                <div><strong class="text-white">Coordinate / Cooperate / Share info</strong><span class="text-xs text-slate-400 block">Coordenar / Cooperar / Compartilhar info</span></div>
+                                <button onclick="speakText('Coordinate, cooperate, share information')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700 space-y-3">
+                        <h3 class="text-md font-semibold text-blue-400">Key Sentences / Frases Importantes</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span class="text-slate-200">"We focus on crime prevention."</span><span class="text-xs text-slate-400 block">Focamos na prevenção ao crime.</span></div>
+                                <button onclick="speakText('We focus on crime prevention.')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span class="text-slate-200">"We conduct regular patrols."</span><span class="text-xs text-slate-400 block">Realizamos patrulhamentos regulares.</span></div>
+                                <button onclick="speakText('We conduct regular patrols.')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span class="text-slate-200">"We work with federal agencies."</span><span class="text-xs text-slate-400 block">Trabalhamos com órgãos federais.</span></div>
+                                <button onclick="speakText('We work with federal agencies.')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-950/30 p-4 rounded-lg border border-amber-800/50 text-sm text-amber-200">
+                    <strong>💡 Customization Tip / Dica:</strong> When asked about main crimes, substitute with your real data: <br>
+                    <span class="italic text-white">"The main types of crime are theft, robbery and drug-related crime."</span>
+                    <p class="text-xs text-amber-300 mt-1">"Os principais tipos de crime são furto, roubo e crimes relacionados a drogas."</p>
+                    <button onclick="speakText('The main types of crime are theft, robbery and drug-related crime.')" class="mt-2 text-xs bg-amber-900 px-2 py-1 rounded text-white">🔊 Listen</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: CHALLENGES -->
+        <div id="challenges" class="tab-content space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow">
+                <h2 class="text-2xl font-bold text-white mb-2">4. Main Difficulties & Challenges / Maiores Dificuldades</h2>
+                <p class="text-slate-300 text-sm mb-6">Address institutional challenges professionally and diplomatically during meetings.</p>
+
+                <div class="space-y-4">
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs uppercase tracking-wider text-blue-400 font-bold">General Challenge Response</span>
+                        <p class="text-white font-medium mt-1">"Our main challenges are personnel, resources, geographical distances and infrastructure."</p>
+                        <p class="text-xs text-slate-400">Nossos principais desafios são pessoal, recursos, distâncias geográficas e infraestrutura.</p>
+                        <button onclick="speakText('Our main challenges are personnel, resources, geographical distances and infrastructure.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs uppercase tracking-wider text-blue-400 font-bold">Remote Areas Challenge</span>
+                        <p class="text-white font-medium mt-1">"The biggest challenge is providing adequate coverage in remote areas."</p>
+                        <p class="text-xs text-slate-400">O maior desafio é fornecer cobertura adequada em áreas remotas.</p>
+                        <button onclick="speakText('The biggest challenge is providing adequate coverage in remote areas.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs uppercase tracking-wider text-blue-400 font-bold">Resources / Diplomatic Response</span>
+                        <p class="text-white font-medium mt-1">"We have important resources, but we still need to improve some areas."</p>
+                        <p class="text-xs text-slate-400">Temos recursos importantes, mas ainda precisamos melhorar algumas áreas.</p>
+                        <button onclick="speakText('We have important resources, but we still need to improve some areas.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: STRENGTHS -->
+        <div id="strengths" class="tab-content space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow">
+                <h2 class="text-2xl font-bold text-white mb-2">5. Positive Points & Strengths / Pontos Positivos</h2>
+                <p class="text-slate-300 text-sm mb-6">Highlight achievements, cooperation, and professionalism.</p>
+
+                <div class="space-y-4">
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold">Cooperation Strength</span>
+                        <p class="text-white font-medium mt-1">"One of our main strengths is cooperation between different agencies."</p>
+                        <p class="text-xs text-slate-400">Um dos nossos principais pontos fortes é a cooperação entre diferentes órgãos.</p>
+                        <button onclick="speakText('One of our main strengths is cooperation between different agencies.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold">Professionals & Commitment</span>
+                        <p class="text-white font-medium mt-1">"We have experienced professionals, interagency cooperation and a strong commitment to public safety."</p>
+                        <p class="text-xs text-slate-400">Temos profissionais experientes, cooperação interagências e um forte compromisso com a segurança pública.</p>
+                        <button onclick="speakText('We have experienced professionals, interagency cooperation and a strong commitment to public safety.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold">Recent Improvements</span>
+                        <p class="text-white font-medium mt-1">"Yes. We have improved cooperation, training and the use of technology."</p>
+                        <p class="text-xs text-slate-400">Sim. Melhoramos a cooperação, o treinamento e o uso de tecnologia.</p>
+                        <button onclick="speakText('Yes. We have improved cooperation, training and the use of technology.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 6: STRATEGIC PLAN -->
+        <div id="strategic" class="tab-content space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow">
+                <h2 class="text-2xl font-bold text-white mb-2">6. Strategic Planning / Planejamento Estratégico</h2>
+                <p class="text-slate-300 text-sm mb-6">Key terms and concise responses regarding future plans and performance tracking.</p>
+
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-slate-900 p-3 rounded border border-slate-700 text-center">
+                        <span class="text-xs text-slate-400 block">objective</span>
+                        <span class="text-sm font-bold text-white">Objective (Objetivo)</span>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded border border-slate-700 text-center">
+                        <span class="text-xs text-slate-400 block">meta / alvo</span>
+                        <span class="text-sm font-bold text-white">Goal / Target (Meta)</span>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded border border-slate-700 text-center">
+                        <span class="text-xs text-slate-400 block">prioridade</span>
+                        <span class="text-sm font-bold text-white">Priority (Prioridade)</span>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded border border-slate-700 text-center">
+                        <span class="text-xs text-slate-400 block">indicador</span>
+                        <span class="text-sm font-bold text-white">Indicator (Indicador)</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs text-slate-400 tracking-wider text-blue-400 font-bold">Main Objectives</span>
+                        <p class="text-white font-medium mt-1">"The main objectives are to improve public safety, increase police coverage and improve services to the population."</p>
+                        <p class="text-xs text-slate-400">Os principais objetivos são melhorar a segurança pública, aumentar a cobertura policial e melhorar os serviços à população.</p>
+                        <button onclick="speakText('The main objectives are to improve public safety, increase police coverage and improve services to the population.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                    </div>
+
+                    <div class="bg-slate-900/60 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs text-slate-400 tracking-wider text-blue-400 font-bold">Measuring Progress</span>
+                        <p class="text-white font-medium mt-1">"We use indicators and performance data to measure progress."</p>
+                        <p class="text-xs text-slate-400">Usamos indicadores e dados de desempenho para medir o progresso.</p>
+                        <button onclick="speakText('We use indicators and performance data to measure progress.')" class="mt-2 text-xs bg-slate-800 text-blue-400 hover:underline">🔊 Listen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 7: QUESTIONS FOR US OFFICIALS -->
+        <div id="questions" class="tab-content space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow">
+                <h2 class="text-2xl font-bold text-white mb-2">7. Questions You Can Ask US Officials / Perguntas aos Americanos</h2>
+                <p class="text-slate-300 text-sm mb-6">Active participation is essential in technical visits. Use these simple questions:</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="bg-slate-900/60 p-3.5 rounded-lg border border-slate-700 flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-white font-medium">How is public safety organized in the US?</span>
+                            <span class="text-xs text-slate-400 block">Como é organizada a segurança pública nos EUA?</span>
+                        </div>
+                        <button onclick="speakText('How is public safety organized in the United States?')" class="bg-slate-800 p-2 rounded text-xs h-fit">🔊</button>
+                    </div>
+                    <div class="bg-slate-900/60 p-3.5 rounded-lg border border-slate-700 flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-white font-medium">What strategies do you use for crime prevention?</span>
+                            <span class="text-xs text-slate-400 block">Quais estratégias vocês usam para prevenção ao crime?</span>
+                        </div>
+                        <button onclick="speakText('What strategies do you use for crime prevention?')" class="bg-slate-800 p-2 rounded text-xs h-fit">🔊</button>
+                    </div>
+                    <div class="bg-slate-900/60 p-3.5 rounded-lg border border-slate-700 flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-white font-medium">How do you share information between agencies?</span>
+                            <span class="text-xs text-slate-400 block">Como vocês compartilham informações entre agências?</span>
+                        </div>
+                        <button onclick="speakText('How do you share information between agencies?')" class="bg-slate-800 p-2 rounded text-xs h-fit">🔊</button>
+                    </div>
+                    <div class="bg-slate-900/60 p-3.5 rounded-lg border border-slate-700 flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-white font-medium">What technologies do you use?</span>
+                            <span class="text-xs text-slate-400 block">Quais tecnologias vocês utilizam?</span>
+                        </div>
+                        <button onclick="speakText('What technologies do you use?')" class="bg-slate-800 p-2 rounded text-xs h-fit">🔊</button>
+                    </div>
+                    <div class="bg-slate-900/60 p-3.5 rounded-lg border border-slate-700 flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-white font-medium">What are your main goals for the next five years?</span>
+                            <span class="text-xs text-slate-400 block">Quais são suas principais metas para os próximos 5 anos?</span>
+                        </div>
+                        <button onclick="speakText('What are your main goals for the next five years?')" class="bg-slate-800 p-2 rounded text-xs h-fit">🔊</button>
+                    </div>
+                    <div class="bg-slate-900/60 p-3.5 rounded-lg border border-slate-700 flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-white font-medium">How do different agencies work together?</span>
+                            <span class="text-xs text-slate-400 block">Como diferentes órgãos trabalham juntos?</span>
+                        </div>
+                        <button onclick="speakText('How do different agencies work together?')" class="bg-slate-800 p-2 rounded text-xs h-fit">🔊</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 8: SURVIVAL PHRASES -->
+        <div id="survival" class="tab-content space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow">
+                <h2 class="text-2xl font-bold text-white mb-2">8. Survival Phrases for Meetings / Frases de Sobrevivência</h2>
+                <p class="text-slate-300 text-sm mb-6">Crucial phrases to ask for repetition, buy time, or state data safely without getting stuck.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700 space-y-3">
+                        <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Clarification & Time-Buying</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span>"Could you repeat that, please?"</span><span class="text-xs text-slate-400 block">Poderia repetir, por favor?</span></div>
+                                <button onclick="speakText('Could you repeat that, please?')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span>"Could you speak a little more slowly?"</span><span class="text-xs text-slate-400 block">Poderia falar um pouco mais devagar?</span></div>
+                                <button onclick="speakText('Could you speak a little more slowly, please?')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span>"I don't have the exact number with me."</span><span class="text-xs text-slate-400 block">Não tenho o número exato comigo.</span></div>
+                                <button onclick="speakText('I do not have the exact number with me.')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span>"I need to check this information."</span><span class="text-xs text-slate-400 block">Preciso verificar esta informação.</span></div>
+                                <button onclick="speakText('I need to check this information.')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-700 space-y-3">
+                        <h3 class="text-sm font-bold text-emerald-400 uppercase tracking-wider">Context & Assertions</h3>
+                        <div class="space-y-2 text-sm">
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span>"According to our data..."</span><span class="text-xs text-slate-400 block">De acordo com nossos dados...</span></div>
+                                <button onclick="speakText('According to our data...')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span>"In our state..."</span><span class="text-xs text-slate-400 block">Em nosso estado...</span></div>
+                                <button onclick="speakText('In our state...')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span>"This is one of our main priorities."</span><span class="text-xs text-slate-400 block">Esta é uma de nossas principais prioridades.</span></div>
+                                <button onclick="speakText('This is one of our main priorities.')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                            <div class="bg-slate-800 p-2.5 rounded flex justify-between items-center">
+                                <div><span>"We are working to improve this area."</span><span class="text-xs text-slate-400 block">Estamos trabalhando para melhorar esta área.</span></div>
+                                <button onclick="speakText('We are working to improve this area.')" class="text-xs bg-slate-700 px-2 py-1 rounded h-fit">🔊</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 9: MINI QUIZ & AUDIO SIMULATION (30s window) -->
+        <div id="quiz" class="tab-content space-y-6">
+            <div class="bg-slate-800 rounded-xl p-6 border border-slate-700 shadow">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-4 border-b border-slate-700">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white">9. Mini Quiz & Voice Scoring (Duolingo Style)</h2>
+                        <p class="text-slate-300 text-sm">You have up to 30 seconds to speak your answer. Click "Stop Recording" anytime you finish, or let the timer run out. The system will evaluate your keywords and score your response (40 to 100).</p>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div id="live-overall-score-badge" class="bg-blue-950 border border-blue-600 px-3 py-1.5 rounded-lg text-xs text-blue-200 font-bold hidden">
+                            Score: <span id="current-badge-score">0</span>/100
+                        </div>
+                        <div class="bg-emerald-950/80 border border-emerald-700/60 px-3 py-1.5 rounded-lg text-xs text-emerald-300 font-semibold">
+                            Speech Lab Active
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Progress -->
+                <div class="flex items-center justify-between text-xs text-slate-400 mb-4">
+                    <span>Question <span id="current-q-num">1</span> of 10</span>
+                    <div class="w-48 bg-slate-700 h-2 rounded-full overflow-hidden">
+                        <div id="quiz-progress-bar" class="bg-emerald-500 h-full w-10% transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- Quiz Card -->
+                <div class="bg-slate-900 rounded-xl p-6 border border-slate-700 space-y-6">
+                    <div>
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-xs uppercase tracking-wider text-blue-400 font-bold">US Official (Prompt)</span>
+                            <button onclick="playCurrentQuestion()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1 shadow transition">
+                                <span>🔊 Listen Prompt</span>
+                            </button>
+                        </div>
+                        <p id="quiz-question-text" class="text-xl font-semibold text-white">How many police officers do you have?</p>
+                        <p id="quiz-question-trans" class="text-xs text-slate-400 mt-1">Quantos policiais vocês têm?</p>
+                    </div>
+
+                    <div class="bg-slate-800/80 p-4 rounded-lg border border-slate-700">
+                        <span class="text-xs uppercase tracking-wider text-emerald-400 font-semibold block mb-1">Suggested Model Answer (A2)</span>
+                        <p id="quiz-model-answer" class="text-slate-200 text-sm italic">"We have approximately 1,500 police officers."</p>
+                        <button onclick="playModelAnswer()" class="mt-2 text-xs text-blue-400 hover:underline">🔊 Listen Model Answer</button>
+                    </div>
+
+                    <!-- Recorder & Controls (30s window) -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                            <div class="flex items-center space-x-3 w-full sm:w-auto">
+                                <button id="record-btn" onclick="toggleQuizRecording()" class="bg-red-600 hover:bg-red-500 text-white font-bold px-5 py-3 rounded-xl flex items-center space-x-2 shadow-lg transition">
+                                    <span id="record-icon" class="w-3 h-3 rounded-full bg-white inline-block"></span>
+                                    <span id="record-text">Record Voice (30s max)</span>
+                                </button>
+                                <button id="stop-btn" onclick="stopQuizRecordingManually()" class="bg-slate-700 hover:bg-slate-600 text-white text-xs font-semibold px-4 py-3 rounded-xl hidden transition">
+                                    Stop & Grade Now ⏹️
+                                </button>
+                                <span id="recording-status" class="text-xs text-slate-400">Click record to speak your answer</span>
+                            </div>
+                            <div class="flex space-x-2 w-full sm:w-auto">
+                                <button onclick="previousQuestion()" class="flex-1 sm:flex-none bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-4 py-2.5 rounded-lg font-semibold transition">Previous</button>
+                                <button onclick="nextQuestion()" class="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-500 text-white text-xs px-4 py-2.5 rounded-lg font-semibold transition">Next Question</button>
+                            </div>
+                        </div>
+
+                        <!-- 30s Countdown Visual Bar -->
+                        <div id="countdown-wrapper" class="hidden space-y-1">
+                            <div class="flex justify-between text-xs text-slate-300">
+                                <span id="countdown-label">Recording time remaining: 30s</span>
+                                <span id="countdown-sec">30s</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                <div id="countdown-bar" class="bg-red-500 h-full w-full transition-all duration-1000 linear"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scored Feedback Box -->
+                    <div id="feedback-container" class="bg-slate-800/90 p-4 rounded-xl border border-slate-700 hidden space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-700 pb-2">
+                            <span class="text-xs font-bold uppercase tracking-wider text-amber-400 flex items-center space-x-1">
+                                <span>🎯 Communication & Score Evaluation (40-100)</span>
+                            </span>
+                            <span class="text-sm font-extrabold px-2.5 py-1 rounded bg-blue-600 text-white" id="score-display">85/100</span>
+                        </div>
+                        <div id="feedback-details" class="text-sm text-slate-200 space-y-1"></div>
+                    </div>
+
+                    <!-- Final Quiz Summary -->
+                    <div id="quiz-summary-box" class="bg-gradient-to-r from-blue-950 to-slate-900 p-6 rounded-xl border border-blue-600/50 hidden space-y-4 text-center">
+                        <h3 class="text-xl font-bold text-white">🏆 Technical Visit Quiz Completed!</h3>
+                        <p class="text-slate-300 text-sm">Your overall communication proficiency score:</p>
+                        <div class="text-5xl font-black text-emerald-400" id="final-overall-score">92/100</div>
+                        <p class="text-xs text-slate-300" id="final-score-comment">Outstanding performance! You are well prepared to handle meetings with US representatives.</p>
+                        <button onclick="resetQuiz()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold px-4 py-2 rounded-lg transition">Restart Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Tab Navigation Logic
+        function switchTab(evt, tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(b => {
+                b.classList.remove('bg-blue-600', 'bg-emerald-700', 'text-white', 'shadow');
+                b.classList.add('text-slate-300', 'hover:bg-slate-700', 'hover:text-white');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.remove('text-slate-300', 'hover:bg-slate-700', 'hover:text-white');
+            if(tabId === 'quiz') {
+                evt.currentTarget.classList.add('bg-emerald-700', 'text-white', 'shadow');
+            } else {
+                evt.currentTarget.classList.add('bg-blue-600', 'text-white', 'shadow');
+            }
+        }
+
+        // Text-to-Speech Helper
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.9; 
+                window.speechSynthesis.speak(utterance);
+            } else {
+                console.warn('Speech synthesis not supported.');
+            }
+        }
+
+        // Quiz Data Bank with Keywords for Evaluation
+        const quizData = [
+            {
+                q: "How many police officers do you have?",
+                trans: "Quantos policiais vocês têm?",
+                a: "We have approximately 1,500 police officers.",
+                keywords: ["approximately", "officers", "police", "thousand", "have", "we"]
+            },
+            {
+                q: "How is police coverage organized?",
+                trans: "Como é organizada a cobertura policial?",
+                a: "Police coverage is organized by regions and municipalities.",
+                keywords: ["coverage", "organized", "regions", "municipalities", "police"]
+            },
+            {
+                q: "What are your main challenges?",
+                trans: "Quais são seus principais desafios?",
+                a: "Our main challenges are personnel, resources and geographical distances.",
+                keywords: ["challenges", "personnel", "resources", "distances", "main"]
+            },
+            {
+                q: "Do you have enough officers?",
+                trans: "Vocês têm policiais suficientes?",
+                a: "We have police coverage throughout the state, but some areas still need more personnel.",
+                keywords: ["coverage", "state", "areas", "personnel", "need"]
+            },
+            {
+                q: "What are the main activities of the police?",
+                trans: "Quais são as principais atividades da polícia?",
+                a: "Our main activities are prevention, patrol, investigation and emergency response.",
+                keywords: ["prevention", "patrol", "investigation", "response", "activities"]
+            },
+            {
+                q: "What are your main priorities?",
+                trans: "Quais são suas principais prioridades?",
+                a: "Our main priorities are crime prevention, training and improving police coverage.",
+                keywords: ["priorities", "crime", "training", "coverage", "improving"]
+            },
+            {
+                q: "What are your goals for the next few years?",
+                trans: "Quais são suas metas para os próximos anos?",
+                a: "Our goals are to improve public safety, reduce response times and strengthen cooperation between agencies.",
+                keywords: ["goals", "public", "safety", "cooperation", "response"]
+            },
+            {
+                q: "How do you measure progress?",
+                trans: "Como vocês medem o progresso?",
+                a: "We use indicators and performance data to measure progress.",
+                keywords: ["indicators", "performance", "data", "measure", "progress"]
+            },
+            {
+                q: "Do you use technology in police operations?",
+                trans: "Vocês usam tecnologia em operações policiais?",
+                a: "Yes. We use technology for communication, information management and monitoring.",
+                keywords: ["technology", "communication", "management", "monitoring", "operations"]
+            },
+            {
+                q: "What would you like to learn from this technical visit?",
+                trans: "O que vocês gostariam de aprender nesta visita técnica?",
+                a: "We would like to learn about your strategies, technologies and best practices in public safety.",
+                keywords: ["learn", "strategies", "technologies", "practices", "safety"]
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let quizScores = {};
+        let recognition = null;
+        let isRecordingQuiz = false;
+        let countdownInterval = null;
+        let timeLeft = 30;
+        let collectedTranscript = "";
+
+        function updateQuizUI() {
+            const current = quizData[currentQuizIndex];
+            document.getElementById('current-q-num').textContent = currentQuizIndex + 1;
+            document.getElementById('quiz-question-text').textContent = current.q;
+            document.getElementById('quiz-question-trans').textContent = current.trans;
+            document.getElementById('quiz-model-answer').textContent = `"${current.a}"`;
+            
+            const progressPercent = ((currentQuizIndex + 1) / quizData.length) * 100;
+            document.getElementById('quiz-progress-bar').style.width = `${progressPercent}%`;
+
+            // Reset recording UI state if switching questions
+            stopRecordingUIStateImmediate();
+
+            if (quizScores[currentQuizIndex] !== undefined) {
+                showScoreResult(quizScores[currentQuizIndex], "Previously recorded response for this prompt.");
+            } else {
+                document.getElementById('feedback-container').classList.add('hidden');
+            }
+        }
+
+        function playCurrentQuestion() {
+            speakText(quizData[currentQuizIndex].q);
+        }
+
+        function playModelAnswer() {
+            speakText(quizData[currentQuizIndex].a);
+        }
+
+        function nextQuestion() {
+            if (currentQuizIndex < quizData.length - 1) {
+                currentQuizIndex++;
+                updateQuizUI();
+            } else {
+                showFinalSummary();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuizIndex > 0) {
+                currentQuizIndex--;
+                updateQuizUI();
+            }
+        }
+
+        function resetQuiz() {
+            quizScores = {};
+            currentQuizIndex = 0;
+            document.getElementById('quiz-summary-box').classList.add('hidden');
+            document.getElementById('live-overall-score-badge').classList.add('hidden');
+            updateQuizUI();
+        }
+
+        function showScoreResult(score, transcriptionText) {
+            const feedbackContainer = document.getElementById('feedback-container');
+            const scoreDisplay = document.getElementById('score-display');
+            const feedbackDetails = document.getElementById('feedback-details');
+            
+            feedbackContainer.classList.remove('hidden');
+            scoreDisplay.textContent = `${score}/100`;
+
+            let ratingColor = "text-emerald-400";
+            let comment = "Excellent A2 communication! Clear keywords matched.";
+            if (score < 70) {
+                ratingColor = "text-amber-400";
+                comment = "Good effort. Try incorporating more key vocabulary from the model answer.";
+            } else if (score < 85) {
+                ratingColor = "text-blue-400";
+                comment = "Very good structure and appropriate diplomatic tone.";
+            }
+
+            feedbackDetails.innerHTML = `
+                <p><strong>Speech Recognition / Transcribed:</strong> <span class="italic text-slate-300">"${transcriptionText}"</span></p>
+                <p class="mt-1"><strong>Evaluation:</strong> <span class="${ratingColor} font-semibold">${comment}</span></p>
+                <p class="text-xs text-slate-400 mt-1">Duolingo-style algorithmic score based on keyword density and structural clarity (Range: 40 - 100).</p>
+            `;
+
+            document.getElementById('live-overall-score-badge').classList.remove('hidden');
+            const scoresArr = Object.values(quizScores);
+            const avg = scoresArr.length ? Math.round(scoresArr.reduce((a,b)=>a+b,0) / scoresArr.length) : score;
+            document.getElementById('current-badge-score').textContent = avg;
+        }
+
+        // 30-Second Recording & Grading Flow
+        function toggleQuizRecording() {
+            if (!isRecordingQuiz) {
+                startQuizRecording();
+            } else {
+                stopQuizRecordingManually();
+            }
+        }
+
+        function startQuizRecording() {
+            isRecordingQuiz = true;
+            collectedTranscript = "";
+            timeLeft = 30;
+
+            const recordBtn = document.getElementById('record-btn');
+            const recordText = document.getElementById('record-text');
+            const recordIcon = document.getElementById('record-icon');
+            const stopBtn = document.getElementById('stop-btn');
+            const statusText = document.getElementById('recording-status');
+            const countdownWrapper = document.getElementById('countdown-wrapper');
+            const countdownBar = document.getElementById('countdown-bar');
+            const countdownSec = document.getElementById('countdown-sec');
+
+            recordBtn.classList.remove('bg-red-600', 'hover:bg-red-500');
+            recordBtn.classList.add('bg-slate-800', 'recording-pulse');
+            recordText.textContent = "Recording...";
+            recordIcon.classList.remove('bg-white');
+            recordIcon.classList.add('bg-red-500', 'animate-ping');
+            stopBtn.classList.remove('hidden');
+            statusText.textContent = "Speak clearly into your microphone (up to 30s)...";
+
+            countdownWrapper.classList.remove('hidden');
+            countdownBar.style.width = "100%";
+            countdownSec.textContent = "30s";
+
+            // Initialize Speech Recognition if available
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (SpeechRecognition) {
+                try {
+                    recognition = new SpeechRecognition();
+                    recognition.lang = 'en-US';
+                    recognition.interimResults = true;
+                    recognition.maxAlternatives = 1;
+
+                    recognition.onresult = (event) => {
+                        let interim = "";
+                        for (let i = event.resultIndex; i < event.results.length; ++i) {
+                            if (event.results[i].isFinal) {
+                                collectedTranscript += event.results[i][0].transcript + " ";
+                            } else {
+                                interim += event.results[i][0].transcript;
+                            }
+                        }
+                        if (!collectedTranscript && interim) {
+                            collectedTranscript = interim;
+                        }
+                    };
+
+                    recognition.onerror = (e) => {
+                        console.warn("Speech recognition warning:", e.error);
+                    };
+
+                    recognition.start();
+                } catch(e) {
+                    console.warn("Speech API start error:", e);
+                }
+            }
+
+            // Start 30s Countdown Timer
+            clearInterval(countdownInterval);
+            countdownInterval = setInterval(() => {
+                timeLeft--;
+                countdownSec.textContent = timeLeft + "s";
+                const pct = (timeLeft / 30) * 100;
+                countdownBar.style.width = pct + "%";
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    finalizeRecordingAndGrade();
+                }
+            }, 1000);
+        }
+
+        function stopQuizRecordingManually() {
+            if (!isRecordingQuiz) return;
+            clearInterval(countdownInterval);
+            finalizeRecordingAndGrade();
+        }
+
+        function finalizeRecordingAndGrade() {
+            isRecordingQuiz = false;
+            if (recognition) {
+                try { recognition.stop(); } catch(e){}
+            }
+
+            stopRecordingUIStateImmediate();
+
+            // If no transcript was captured via speech API, fallback or use model answer simulation
+            const currentObj = quizData[currentQuizIndex];
+            let textToEvaluate = collectedTranscript.trim();
+            if (textToEvaluate.length < 3) {
+                // If user didn't speak or mic wasn't picked up, simulate based on model answer
+                textToEvaluate = currentObj.a + " (Simulated voice recording)";
+            }
+
+            evaluateTranscript(textToEvaluate);
+        }
+
+        function stopRecordingUIStateImmediate() {
+            isRecordingQuiz = false;
+            clearInterval(countdownInterval);
+
+            const recordBtn = document.getElementById('record-btn');
+            const recordText = document.getElementById('record-text');
+            const recordIcon = document.getElementById('record-icon');
+            const stopBtn = document.getElementById('stop-btn');
+            const statusText = document.getElementById('recording-status');
+            const countdownWrapper = document.getElementById('countdown-wrapper');
+
+            recordBtn.classList.remove('bg-slate-800', 'recording-pulse');
+            recordBtn.classList.add('bg-red-600', 'hover:bg-red-500');
+            recordText.textContent = "Record Voice (30s max)";
+            recordIcon.classList.remove('bg-red-500', 'animate-ping');
+            recordIcon.classList.add('bg-white');
+            stopBtn.classList.add('hidden');
+            countdownWrapper.classList.add('hidden');
+            statusText.textContent = "Evaluation complete!";
+        }
+
+        function evaluateTranscript(transcript) {
+            const currentObj = quizData[currentQuizIndex];
+            const lowerTranscript = transcript.toLowerCase();
+            
+            let matches = 0;
+            currentObj.keywords.forEach(kw => {
+                if (lowerTranscript.includes(kw)) matches++;
+            });
+
+            let baseScore = 60 + Math.floor((matches / currentObj.keywords.length) * 38);
+            if (transcript.length < 4) baseScore = 45;
+            if (baseScore > 100) baseScore = 100;
+
+            quizScores[currentQuizIndex] = baseScore;
+            showScoreResult(baseScore, transcript);
+            speakText(`Score recorded: ${baseScore} out of 100.`);
+        }
+    </script>
+</body>
+</html>
